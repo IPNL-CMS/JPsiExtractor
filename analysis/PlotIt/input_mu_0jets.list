@@ -1,0 +1,9 @@
+TTbar-dilept.root		    mc      12031276		 25.8031    1.
+TTbar-hadronic.root  		mc      31223821	  112.325     1.
+TTbar-semilept.root  		mc      25339818		107.6722    1.
+TTbar173.root    		    sig     90000000	 	245.8	      1.
+end
+
+
+https://twiki.cern.ch/twiki/bin/view/CMS/StandardModelCrossSectionsat8TeV?skin=drupal
+http://cms.cern.ch/iCMS/prep/requestmanagement?dsn=QCD_Pt_*&campid=Summer12_DR53X
