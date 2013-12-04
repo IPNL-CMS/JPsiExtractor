@@ -83,6 +83,8 @@ def createExtractorProcess(isMC, isSemiMu, useShiftCorrectedMET, globalTag):
   process.PATextraction.vtx_tag    = cms.InputTag( "goodOfflinePrimaryVertices" )
   process.PATextraction.doHLT      = True
 
+  process.PATextraction.doPF       = True
+
   if not isMC:
     if isSemiMu:
       process.PATextraction.triggersXML = readFile("triggers_mu.xml")

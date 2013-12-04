@@ -6,8 +6,8 @@
 
 import sys, os, string, shutil
 
-outRoot ="Plots_El_2jets40_chi5_mudist105_drjet03_ctausup_131203"
-#outRoot ="Plots_Mu_2jets40_chi5_mudist105_drjet03_ctausup_131203"
+#outRoot ="Plots_El_2jets40_chi5_mudist105_drjet03_ctausup_131203"
+outRoot ="Plots_Mu_2jets40_chi5_mudist105_drjet03_ctausup_131203"
 exe = "./runMyAna"
 
 fileListDir = "../test/filelists"

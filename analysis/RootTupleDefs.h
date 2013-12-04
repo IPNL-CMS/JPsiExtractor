@@ -75,7 +75,7 @@ public :
    Float_t         muon_d0error[100];   
    Int_t           muon_mcParticleIndex[100];   
    Float_t         muon_pixelLayerWithMeasurement[100]; 
-   std::vector<std::vector<double> > *muon_scaleFactor;
+   std::vector<std::vector<double> > *muon_scaleFactorTightEff;
 
    //electrons leaves
    Int_t           n_electrons;
@@ -105,7 +105,7 @@ public :
    Bool_t          electron_passVetoID[100];
    Bool_t          electron_passLooseID[100];
    Bool_t          electron_passMediumID[100];
-   std::vector<std::vector<double> > *electron_scaleFactor;
+   std::vector<std::vector<double> > *electron_scaleFactorTight;
 
    //vertices leaves
    Int_t           n_vertices;
@@ -377,8 +377,8 @@ void RootTupleDefs::Init(TTree *_muonstree, TTree *_electronstree, TTree *_jetst
    jet_4vector = NULL;
    met_4vector = NULL;
    HLT_vector  = NULL;
-   muon_scaleFactor=NULL;
-   electron_scaleFactor=NULL;
+   muon_scaleFactorTightEff=NULL;
+   electron_scaleFactorTight=NULL;
    jet_scaleFactor=NULL;
    muonloose_4vector = NULL;
    electronloose_4vector = NULL;
@@ -388,6 +388,9 @@ void RootTupleDefs::Init(TTree *_muonstree, TTree *_electronstree, TTree *_jetst
    jpsimu_4vector = NULL;
    jpsi_mu1_4vector = NULL;
    jpsi_mu2_4vector = NULL;
+   MC_JPsi_4vector =NULL;
+   MC_Bhad_4vector =NULL;
+   MC_Bquark_4vector =NULL;
    // set pointers and branches adresses  for muons 
    if (!_muonstree) return;
    muonsChain = _muonstree;
@@ -426,7 +429,7 @@ void RootTupleDefs::Init(TTree *_muonstree, TTree *_electronstree, TTree *_jetst
    SetBranchStatusAndAddress(muonsChain, "muon_d0error", &muon_d0error);
    SetBranchStatusAndAddress(muonsChain, "muon_mcParticleIndex", &muon_mcParticleIndex);
    SetBranchStatusAndAddress(muonsChain, "muon_pixelLayerWithMeasurement", &muon_pixelLayerWithMeasurement);
-   SetBranchStatusAndAddress(muonsChain, "muon_scaleFactor", &muon_scaleFactor);
+   SetBranchStatusAndAddress(muonsChain, "muon_scaleFactorTightEff", &muon_scaleFactorTightEff);
 
    // set pointers and branches adresses  for electrons
  
@@ -464,7 +467,7 @@ void RootTupleDefs::Init(TTree *_muonstree, TTree *_electronstree, TTree *_jetst
    SetBranchStatusAndAddress(electronsChain, "electron_passVetoID", &electron_passVetoID);
    SetBranchStatusAndAddress(electronsChain, "electron_passLooseID", &electron_passLooseID);
    SetBranchStatusAndAddress(electronsChain, "electron_passMediumID", &electron_passMediumID);
-   SetBranchStatusAndAddress(electronsChain, "electron_scaleFactor", &electron_scaleFactor);
+   SetBranchStatusAndAddress(electronsChain, "electron_scaleFactorTight", &electron_scaleFactorTight);
 
    //scbeta
    //template SetBranchStatusAndAddress(muonsChain, "", &);
@@ -664,6 +667,22 @@ void RootTupleDefs::Init(TTree *_muonstree, TTree *_electronstree, TTree *_jetst
      SetBranchStatusAndAddress(MCChain, "MC_JPsiFromAntiTop", &MC_JPsiFromAntiTop);
      SetBranchStatusAndAddress(MCChain, "MC_LeptonFromTop", &MC_LeptonFromTop);
      SetBranchStatusAndAddress(MCChain, "MC_LeptonFromAntiTop", &MC_LeptonFromAntiTop);
+     SetBranchStatusAndAddress(MCChain, "MC_JPsi_4vector", &MC_JPsi_4vector);
+     SetBranchStatusAndAddress(MCChain, "MC_JPsi_e", &MC_JPsi_e);
+     SetBranchStatusAndAddress(MCChain, "MC_JPsi_px", &MC_JPsi_px);
+     SetBranchStatusAndAddress(MCChain, "MC_JPsi_py", &MC_JPsi_py);
+     SetBranchStatusAndAddress(MCChain, "MC_JPsi_pz", &MC_JPsi_pz);
+     SetBranchStatusAndAddress(MCChain, "MC_Bhad_4vector", &MC_Bhad_4vector);
+     SetBranchStatusAndAddress(MCChain, "MC_Bhad_e", &MC_Bhad_e);
+     SetBranchStatusAndAddress(MCChain, "MC_Bhad_px", &MC_Bhad_px);
+     SetBranchStatusAndAddress(MCChain, "MC_Bhad_py", &MC_Bhad_py);
+     SetBranchStatusAndAddress(MCChain, "MC_Bhad_pz", &MC_Bhad_pz);
+     SetBranchStatusAndAddress(MCChain, "MC_Bhad_id", &MC_Bhad_id);
+     SetBranchStatusAndAddress(MCChain, "MC_Bquark_4vector", &MC_Bquark_4vector);
+     SetBranchStatusAndAddress(MCChain, "MC_Bquark_e", &MC_Bquark_e);
+     SetBranchStatusAndAddress(MCChain, "MC_Bquark_px", &MC_Bquark_px);
+     SetBranchStatusAndAddress(MCChain, "MC_Bquark_py", &MC_Bquark_py);
+     SetBranchStatusAndAddress(MCChain, "MC_Bquark_pz", &MC_Bquark_pz);
    }   
 
    if (!_PFparttree) return;
@@ -672,7 +691,7 @@ void RootTupleDefs::Init(TTree *_muonstree, TTree *_electronstree, TTree *_jetst
    PFpartChain->SetMakeClass(1);
 
    PFpartChain->SetBranchStatus("*",0); //desactivate all electrons branches
-    
+
    SetBranchStatusAndAddress(PFpartChain, "n_pf", &n_pf); 
    SetBranchStatusAndAddress(PFpartChain, "pf_4vector", &pf_4vector);   
    SetBranchStatusAndAddress(PFpartChain, "pf_vx", &pf_vx);   

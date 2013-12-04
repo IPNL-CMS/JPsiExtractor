@@ -195,12 +195,12 @@ void MyAna::Loop()
   TH1F* TOP_M_RECO_GP    = new TH1F("TOP_M_RECO_GP","TOP_M_RECO_GP",850,0,250);
   TH1F* TOP_M_RECO_WP    = new TH1F("TOP_M_RECO_WP","TOP_M_RECO_WP",850,0,250);
 
-  TH1F* X_E_JPSI_BHAD_GEN     = new TH1F("X_E_JPSI_BHAD","X_E_JPSI_BHAD",100,0.,1.);
-  TH1F* X_E_JPSI_BQUARK_GEN   = new TH1F("X_E_JPSI_BQUARK","X_E_JPSI_BQUARK",100,0.,1.);
-  TH1F* X_E_BHAD_BQUARK_GEN   = new TH1F("X_E_BHAD_BQUARK","X_E_BHAD_BQUARK",100,0.,1.);
-  TH1F* X_PT_JPSI_BHAD_GEN    = new TH1F("X_PT_JPSI_BHAD","X_E_JPSI_BHAD",100,0.,1.);
-  TH1F* X_PT_JPSI_BQUARK_GEN  = new TH1F("X_PT_JPSI_BQUARK","X_E_JPSI_BQUARK",100,0.,1.);
-  TH1F* X_PT_BHAD_BQUARK_GEN  = new TH1F("X_PT_BHAD_BQUARK","X_E_BHAD_BQUARK",100,0.,1.);
+  TH1F* X_E_JPSI_BHAD_GEN     = new TH1F("X_E_JPSI_BHAD","X_E_JPSI_BHAD",200,0.,2.);
+  TH1F* X_E_JPSI_BQUARK_GEN   = new TH1F("X_E_JPSI_BQUARK","X_E_JPSI_BQUARK",200,0.,2.);
+  TH1F* X_E_BHAD_BQUARK_GEN   = new TH1F("X_E_BHAD_BQUARK","X_E_BHAD_BQUARK",200,0.,2.);
+  TH1F* X_PT_JPSI_BHAD_GEN    = new TH1F("X_PT_JPSI_BHAD","X_E_JPSI_BHAD",200,0.,2.);
+  TH1F* X_PT_JPSI_BQUARK_GEN  = new TH1F("X_PT_JPSI_BQUARK","X_E_JPSI_BQUARK",200,0.,2.);
+  TH1F* X_PT_BHAD_BQUARK_GEN  = new TH1F("X_PT_BHAD_BQUARK","X_E_BHAD_BQUARK",200,0.,2.);
   TH1F* BHAD_ID_GEN           = new TH1F("BHAD_ID","BHAD_ID",26300,-5600.,20700.);
 
   TH1F* DPHIJPSIJETMIN    = new TH1F("DPHIJPSIJETMIN","DPHIJPSIJETMIN",100,0.,5.);
@@ -934,7 +934,7 @@ void MyAna::Loop()
           double pt_bquark_gen = sqrt(pow(MC_Bquark_px[indJPsi],2.)+pow(MC_Bquark_py[indJPsi],2.));
           X_PT_BHAD_BQUARK_GEN->Fill(pt_bhad_gen/pt_bquark_gen,WEIGHT);
         }
-        if (MC_Bhad_id !=0) BHAD_ID_GEN->Fill(MC_Bhad_id[indJPsi],WEIGHT);
+        if (MC_Bhad_id[indJPsi] !=0) BHAD_ID_GEN->Fill(MC_Bhad_id[indJPsi],WEIGHT);
 
       }
 
