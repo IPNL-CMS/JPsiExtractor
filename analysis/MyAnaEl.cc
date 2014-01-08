@@ -201,6 +201,8 @@ void MyAna::Loop()
   TH1F* X_PT_JPSI_BQUARK_GEN  = new TH1F("X_PT_JPSI_BQUARK","X_E_JPSI_BQUARK",200,0.,2.);
   TH1F* X_PT_BHAD_BQUARK_GEN  = new TH1F("X_PT_BHAD_BQUARK","X_E_BHAD_BQUARK",200,0.,2.);
   TH1F* BHAD_ID_GEN           = new TH1F("BHAD_ID","BHAD_ID",26300,-5600.,20700.);
+  TH1F* DR_BHAD_BQUARK        = new TH1F("DR_BHAD_BQUARK","DR_BHAD_BQUARK",600,0.,3.);
+  TH1F* DR_BHAD_BQUARK_1      = new TH1F("DR_BHAD_BQUARK_1","DR_BHAD_BQUARK_1",600,0.,3.);
 
   TH1F* DPHIJPSIJETMIN    = new TH1F("DPHIJPSIJETMIN","DPHIJPSIJETMIN",100,0.,5.);
   TH1F* DPHIJPSILEPTON    = new TH1F("DPHIJPSILEPTON","DPHIJPSILEPTON",100,0.,5.);
@@ -214,6 +216,39 @@ void MyAna::Loop()
   float mass_reco_all, weight_reco_all;
   M_RECO_ALL->Branch("mass", &mass_reco_all, "mass/F");  
   M_RECO_ALL->Branch("weight", &weight_reco_all, "weight/F");  
+
+  TH1F* JPSI_PT_SHIFT        = new TH1F("JPSI_PT_SHIFT","JPSI_PT_SHIFT",500,0.,500.);   
+  TH1F* TOP_M_RECO_ALL_SHIFT = new TH1F("TOP_M_RECO_ALL_SHIFT","TOP_M_RECO_ALL_SHIFT",850,0,250);
+  TTree* M_RECO_ALL_SHIFT    = new TTree("M_RECO_ALL_SHIFT","M_RECO_ALL_SHIFT");
+  float mass_reco_all_shift, weight_reco_all_shift;
+  const float hardshift = 0.5; // shift de hardshift GeV sur p_{T,J/#psi}
+  M_RECO_ALL_SHIFT->Branch("mass_shift", &mass_reco_all_shift, "mass_shift/F");  
+  M_RECO_ALL_SHIFT->Branch("weight_shift", &weight_reco_all_shift, "weight_shift/F");  
+
+  TH1F* PT_SMEARING          = new TH1F("PT_SMEARING","PT_SMEARING",500,0.,100.);   
+  TH1F* JPSI_PT_SMEAR        = new TH1F("JPSI_PT_SMEAR","JPSI_PT_SMEAR",500,0.,500.);   
+  TH1F* TOP_M_RECO_ALL_SMEAR = new TH1F("TOP_M_RECO_ALL_SMEAR","TOP_M_RECO_ALL_SMEAR",850,0,250);
+  TTree* M_RECO_ALL_SMEAR    = new TTree("M_RECO_ALL_SMEAR","M_RECO_ALL_SMEAR");
+  float mass_reco_all_smear, weight_reco_all_smear;
+  const float smear_rms = 1.;  //smearing su spectre du p_{T,J/#psi}
+  M_RECO_ALL_SMEAR->Branch("mass_smear", &mass_reco_all_smear, "mass_smear/F");  
+  M_RECO_ALL_SMEAR->Branch("weight_smear", &weight_reco_all_smear, "weight_smear/F"); 
+
+  TH1F* JPSI_PT_BOTH        = new TH1F("JPSI_PT_BOTH","JPSI_PT_BOTH",500,0.,500.);   
+  TH1F* TOP_M_RECO_ALL_BOTH = new TH1F("TOP_M_RECO_ALL_BOTH","TOP_M_RECO_ALL_BOTH",850,0,250);
+  TTree* M_RECO_ALL_BOTH    = new TTree("M_RECO_ALL_BOTH","M_RECO_ALL_BOTH");
+  float mass_reco_all_both, weight_reco_all_both;
+  M_RECO_ALL_BOTH->Branch("mass_both", &mass_reco_all_both, "mass_both/F");  
+  M_RECO_ALL_BOTH->Branch("weight_both", &weight_reco_all_both, "weight_both/F"); 
+
+  TH1F* MASS_BHADL         = new TH1F("MASS_BHADL","MASS_BHADL",850,0.,250.);
+  TTree* M_GEN_BHADL       = new TTree("M_GEN_BHADL","M_GEN_BHADL");
+  float mass_gen_bhadl, weight_gen_bhadl;
+  M_GEN_BHADL->Branch("mass_gen_bhadl", &mass_gen_bhadl, "mass_gen_bhadl/F");  
+  M_GEN_BHADL->Branch("weight_gen_hadl", &weight_gen_bhadl, "weight_gen_bhadl/F");  
+
+  TFile *fi = TFile::Open("/gridgroup/cms/bouvier/CMSSW_5_3_9_patch2-v3/src/Extractors/JPsiExtractor/analysis/Plots_El_2jets40_chi5_mudist105_drjet03_ctausup_131203/TTbar173.root");
+  TH1F *hist_ref = (TH1F*) fi->Get("JPSI_PT");
 
   //================================================================================================
   // Clone the tree
@@ -539,7 +574,7 @@ void MyAna::Loop()
 
       ICUT->Fill((Double_t)icut,WEIGHT); cutName[icut] = "Exactly 1 J/psi"; ++icut;
       ICUT->GetXaxis()->SetBinLabel(icut,"Exactly 1 J/#psi");
-      
+
       //======================================================
       // J/psi vertex reconstruction
       //======================================================
@@ -881,6 +916,22 @@ void MyAna::Loop()
 
         if (JPsiMatched && LeptonMatched) {
           ++counter[11];
+          if (fabs(MC_Bhad_e[indJPsi])>0) {
+            float px_gen = GetP4(MC_Bhad_4vector,indJPsi)->Px() + GetP4(MC_4vector,indLepton)->Px();
+            float py_gen = GetP4(MC_Bhad_4vector,indJPsi)->Py() + GetP4(MC_4vector,indLepton)->Py();
+            float pz_gen = GetP4(MC_Bhad_4vector,indJPsi)->Pz() + GetP4(MC_4vector,indLepton)->Pz();
+            float e_gen  = GetP4(MC_Bhad_4vector,indJPsi)->E()  + GetP4(MC_4vector,indLepton)->E();
+
+            float p_gen    = sqrt(pow(px_gen,2)+pow(py_gen,2)+pow(pz_gen,2));
+            mass_gen_bhadl = pow(e_gen,2)-pow(p_gen,2);
+            if ( mass_gen_bhadl >= 0 ) mass_gen_bhadl = sqrt(mass_gen_bhadl);
+            else                       mass_gen_bhadl = 0.;
+
+            MASS_BHADL->Fill(mass_gen_bhadl,WEIGHT);
+            weight_gen_bhadl = WEIGHT;
+            M_GEN_BHADL->Fill();
+          }
+
           if (goodpaired) {
             TOP_M_RECO_GP->Fill(m_reco,WEIGHT);
             ++counter[12];
@@ -907,6 +958,9 @@ void MyAna::Loop()
           double pt_bhad_gen   = sqrt(pow(MC_Bhad_px[indJPsi],2.)+pow(MC_Bhad_py[indJPsi],2.)) ;
           double pt_bquark_gen = sqrt(pow(MC_Bquark_px[indJPsi],2.)+pow(MC_Bquark_py[indJPsi],2.));
           X_PT_BHAD_BQUARK_GEN->Fill(pt_bhad_gen/pt_bquark_gen,WEIGHT);
+          double deltar_bhad_bquark = kinem::delta_R(GetP4(MC_Bhad_4vector,indJPsi)->Eta(),GetP4(MC_Bhad_4vector,indJPsi)->Phi(),GetP4(MC_Bquark_4vector,indJPsi)->Eta(),GetP4(MC_Bquark_4vector,indJPsi)->Phi());
+          DR_BHAD_BQUARK->Fill(deltar_bhad_bquark,WEIGHT);
+          if (MC_Bhad_e[indJPsi]/MC_Bquark_e[indJPsi] > 1.) DR_BHAD_BQUARK_1->Fill(deltar_bhad_bquark,WEIGHT);
         }
         if (MC_Bhad_id[indJPsi] != 0) BHAD_ID_GEN->Fill(MC_Bhad_id[indJPsi],WEIGHT);
 
@@ -916,6 +970,52 @@ void MyAna::Loop()
       mass_reco_all = m_reco;
       weight_reco_all = WEIGHT;
       M_RECO_ALL->Fill();
+
+      double shift = 0.5 * ( ((GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py())/fabs(GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py())) * sqrt(pow(GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py(),2.)+2.*hardshift*(hardshift+2.*pt_reco)) - (GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py()));
+      double p_reco_prime_square = pow(p_reco,2.) + 2.*shift*(GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py()+GetP4(electron_4vector,indgoodel[0])->Px()+GetP4(electron_4vector,indgoodel[0])->Py()+shift);
+      double e_reco_prime = GetP4(electron_4vector,indgoodel[0])->E() + sqrt(pow(GetP4(jpsi_4vector,indgoodjpsi[0])->E(),2.)+hardshift*(2.*GetP4(jpsi_4vector,indgoodjpsi[0])->Pt()+hardshift));
+      double e_reco_prime_square = pow(e_reco_prime,2.);
+      mass_reco_all_shift = e_reco_prime_square - p_reco_prime_square;
+      if ( mass_reco_all_shift >= 0 ) mass_reco_all_shift = sqrt(mass_reco_all_shift); 
+      else                            mass_reco_all_shift = 0.;
+      weight_reco_all_shift = WEIGHT;
+      if (mass_reco_all_shift > 0) {
+        TOP_M_RECO_ALL_SHIFT->Fill(mass_reco_all_shift,weight_reco_all_shift);
+        M_RECO_ALL_SHIFT->Fill();
+      }
+      JPSI_PT_SHIFT->Fill(GetP4(jpsi_4vector,indgoodjpsi[0])->Pt()+hardshift,weight_reco_all_shift);
+
+      double hardsmear = 0.;
+      for (int t=1; t < 499; t++) {
+        hardsmear = hardsmear + hist_ref->GetBinContent(t)*exp(-0.5*pow(t/smear_rms,2.))/(2.50662827463108284*smear_rms);
+      }
+      JPSI_PT_SMEAR->Fill(GetP4(jpsi_4vector,indgoodjpsi[0])->Pt()+hardsmear,WEIGHT);
+      PT_SMEARING->Fill(GetP4(jpsi_4vector,indgoodjpsi[0])->Pt(),WEIGHT*exp(-0.5*pow(GetP4(jpsi_4vector,indgoodjpsi[0])->Pt()/smear_rms,2.))/(2.50662827463108284*smear_rms));
+      double smear = 0.5 * ( ((GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py())/fabs(GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py())) * sqrt(pow(GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py(),2.)+2.*hardsmear*(hardsmear+2.*pt_reco)) - (GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py()));
+      double p_prime_square = pow(p_reco,2.) + 2.*smear*(GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py()+GetP4(electron_4vector,indgoodel[0])->Px()+GetP4(electron_4vector,indgoodel[0])->Py()+smear);
+      double e_prime = GetP4(electron_4vector,indgoodel[0])->E() + sqrt(pow(GetP4(jpsi_4vector,indgoodjpsi[0])->E(),2.)+hardsmear*(2.*GetP4(jpsi_4vector,indgoodjpsi[0])->Pt()+hardsmear));
+      mass_reco_all_smear = pow(e_prime,2.)-p_prime_square;
+      if ( mass_reco_all_smear >= 0 ) mass_reco_all_smear = sqrt(mass_reco_all_smear); 
+      else                            mass_reco_all_smear = 0.;
+      weight_reco_all_smear = WEIGHT;
+      if (mass_reco_all_smear > 0) {
+        TOP_M_RECO_ALL_SMEAR->Fill(mass_reco_all_smear,weight_reco_all_smear);
+        M_RECO_ALL_SMEAR->Fill();
+      }
+ 
+      double both = 0.5 * ( ((GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py()+2.*smear)/fabs(GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py()+2.*smear)) * sqrt(pow(GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py()+2.*smear,2.)+2.*hardshift*(hardshift+2.*sqrt(p_prime_square-pow(GetP4(jpsi_4vector,indgoodjpsi[0])->Pz()+GetP4(electron_4vector,indgoodel[0])->Pz(),2.)))) - (GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py()+2.*smear));
+      double p_square = p_prime_square + 2.*both*(GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+2.*smear+GetP4(jpsi_4vector,indgoodjpsi[0])->Py()+GetP4(electron_4vector,indgoodel[0])->Px()+GetP4(electron_4vector,indgoodel[0])->Py()+smear);
+      double e_both = GetP4(electron_4vector,indgoodel[0])->E() + sqrt(pow(GetP4(jpsi_4vector,indgoodjpsi[0])->E(),2.)+hardsmear*(2.*GetP4(jpsi_4vector,indgoodjpsi[0])->Pt()+2.*hardsmear)+hardshift*(2.*GetP4(jpsi_4vector,indgoodjpsi[0])->Pt()+hardshift));
+      double e_square = pow(e_both,2.);
+      mass_reco_all_both = e_square - p_square;
+      if ( mass_reco_all_both >= 0 ) mass_reco_all_both = sqrt(mass_reco_all_both); 
+      else                           mass_reco_all_both = 0.;
+      weight_reco_all_both = WEIGHT;
+      if (mass_reco_all_both > 0) {
+        TOP_M_RECO_ALL_BOTH->Fill(mass_reco_all_both,weight_reco_all_both);
+        M_RECO_ALL_BOTH->Fill();
+      }
+      JPSI_PT_BOTH->Fill(GetP4(jpsi_4vector,indgoodjpsi[0])->Pt()+hardsmear+hardshift,weight_reco_all_both);
 
       // Angular analysis :
       //-------------------
@@ -1083,6 +1183,8 @@ void MyAna::Loop()
     cout << "========================================================================" << endl;
     cout << "Total Number of events skimmed                                  = "  << nwrite			   << endl;
     cout << "========================================================================" << endl;
+
+    fi->Close(); delete fi; 
 
     _newfile->Write();
     _newfile->Close();

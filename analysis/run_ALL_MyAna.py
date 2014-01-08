@@ -6,11 +6,13 @@
 
 import sys, os, string, shutil
 
-#outRoot ="Plots_El_2jets40_chi5_mudist105_drjet03_ctausup_131203"
-outRoot ="Plots_Mu_2jets40_chi5_mudist105_drjet03_ctausup_131203"
+#outRoot ="Plots_El_2jets40_chi5_mudist105_drjet03_ctausup_shiftd_smear1_140108"
+outRoot ="Plots_Mu_2jets40_chi5_mudist105_drjet03_ctausup_shiftd_smear1_140108"
+#outRoot = "Skim_1lepton_1jpsi_131218"
 exe = "./runMyAna"
 
-fileListDir = "../test/filelists"
+#fileListDir = "../test/filelists"
+fileListDir = "filelists_skim_131218"
 
 mkdir="mkdir "+outRoot
 os.system(mkdir)

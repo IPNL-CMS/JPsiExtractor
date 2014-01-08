@@ -9,21 +9,21 @@ parser.add_option("", "--run", action="store_true", dest="run", default=False, h
 
 datasets = [
     #["/Py8TTbar173_19Jun13-v1/ebouvier-TTbar173-Pythia8_26Jun13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar173-Pythia8_26Jun13"]
-    #["/TTbar158_16Feb13-v1/ebouvier-TTbar158_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar158_18Apr13"],
-    #["/TTbar163_16Feb13-v1/ebouvier-TTbar163_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar163_18Apr13"],
-    #["/TTbar167_16Feb13-v1/ebouvier-TTbar167_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar167_18Apr13"],
-    #["/TTbar169_17Feb13-v1/ebouvier-TTbar169_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar169_18Apr13"],
-    #["/TTbar170_16Feb13-v1/ebouvier-TTbar170_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar170_18Apr13"],
-    #["/TTbar171_17Feb13-v1/ebouvier-TTbar171_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar171_18Apr13"],
-    #["/TTbar172_16Feb13-v1/ebouvier-TTbar172_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar172_18Apr13"],
-    ["/TTbar173_16Feb13-v1/ebouvier-TTbar173_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar173_18Apr13"],
-    #["/TTbar174_16Feb13-v1/ebouvier-TTbar174_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar174_18Apr13"],
-    #["/TTbar175_17Feb13-v1/ebouvier-TTbar175_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar175_18Apr13"],
-    #["/TTbar176_16Feb13-v1/ebouvier-TTbar176_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar176_18Apr13"],
-    #["/TTbar177_17Feb13-v1/ebouvier-TTbar177_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar177_18Apr13"],
-    #["/TTbar179_16Feb13-v1/ebouvier-TTbar179_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar179_18Apr13"],
-    #["/TTbar183_16Feb13-v1/ebouvier-TTbar183_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar183_18Apr13"],
-    #["/TTbar188_16Feb13-v1/ebouvier-TTbar188_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar188_18Apr13"],
+    ["/TTbar158_16Feb13-v1/ebouvier-TTbar158_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar158_18Apr13"],
+    ["/TTbar163_16Feb13-v1/ebouvier-TTbar163_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar163_18Apr13"],
+    ["/TTbar167_16Feb13-v1/ebouvier-TTbar167_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar167_18Apr13"],
+    ["/TTbar169_17Feb13-v1/ebouvier-TTbar169_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar169_18Apr13"],
+    ["/TTbar170_16Feb13-v1/ebouvier-TTbar170_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar170_18Apr13"],
+    ["/TTbar171_17Feb13-v1/ebouvier-TTbar171_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar171_18Apr13"],
+    ["/TTbar172_16Feb13-v1/ebouvier-TTbar172_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar172_18Apr13"],
+    #["/TTbar173_16Feb13-v1/ebouvier-TTbar173_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar173_18Apr13"],
+    ["/TTbar174_16Feb13-v1/ebouvier-TTbar174_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar174_18Apr13"],
+    ["/TTbar175_17Feb13-v1/ebouvier-TTbar175_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar175_18Apr13"],
+    ["/TTbar176_16Feb13-v1/ebouvier-TTbar176_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar176_18Apr13"],
+    ["/TTbar177_17Feb13-v1/ebouvier-TTbar177_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar177_18Apr13"],
+    ["/TTbar179_16Feb13-v1/ebouvier-TTbar179_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar179_18Apr13"],
+    ["/TTbar183_16Feb13-v1/ebouvier-TTbar183_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar183_18Apr13"],
+    ["/TTbar188_16Feb13-v1/ebouvier-TTbar188_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar188_18Apr13"],
 
     #["/T_s-channel_TuneZ2star_8TeV-powheg-tauola/ebouvier-T_s-channel_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "T_s-channel_03May13"],
     #["/T_t-channel_TuneZ2star_8TeV-powheg-tauola/ebouvier-T_t-channel_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "T_t-channel_03May13"],
@@ -46,9 +46,9 @@ datasets = [
 
     #["/WJetsToLNu_TuneZ2Star_8TeV-madgraph-tarball/ebouvier-WJetsToLNu_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "WJetsToLNu_03May13"],
 
-    ["/TTJets_FullLeptMGDecays_8TeV-madgraph/ebouvier-TTbar-dilept_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar-dilept_03May13"],
-    ["/TTJets_SemiLeptMGDecays_8TeV-madgraph/ebouvier-TTbar-semilept_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar-semilept_03May13"],
-    ["/TTJets_HadronicMGDecays_8TeV-madgraph/ebouvier-TTbar-hadronic_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar-hadronic_03May13"],
+    #["/TTJets_FullLeptMGDecays_8TeV-madgraph/ebouvier-TTbar-dilept_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar-dilept_03May13"],
+    #["/TTJets_SemiLeptMGDecays_8TeV-madgraph/ebouvier-TTbar-semilept_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar-semilept_03May13"],
+    #["/TTJets_HadronicMGDecays_8TeV-madgraph/ebouvier-TTbar-hadronic_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar-hadronic_03May13"],
 
 
     #["/QCD_Pt-1000_MuEnrichedPt5_TuneZ2star_8TeV_pythia6/ebouvier-QCD_Pt_1000_MuEnriched_07May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "QCD_Pt_1000_MuEnriched_07May13"],
