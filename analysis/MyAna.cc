@@ -47,7 +47,7 @@ void MyAna::Loop()
   //  const double Pi=3.14159265358979323846 ;
 
   Double_t PUWEIGHT[41] = {0.343966,0.421778,0.436096,0.244907,0.159864,0.301344,0.241472,0.274829,0.44007,0.758224,1.17234,1.57047,1.65648,1.48344,1.25881,1.09602,1.02284,1.01614,1.05619,1.11854,1.17075,1.1998,1.20717,1.1982,1.17317,1.13123,1.0737,1.00772,0.928615,0.834017,0.723992,0.605741,0.485348,0.371787,0.270933,0.187491,0.124365,0.0791913,0.0484192,0.0288752,0.0127159};
-  Double_t TRIGWEIGHT[21][3] = {{0.87,0.87,0.79},{0.87,0.87,0.79},{0.87,0.87,0.79},{0.87,0.87,0.79},{0.88,0.88,0.79},{0.88,0.88,0.79},{0.88,0.88,0.79},{0.89,0.89,0.79},{0.89,0.89,0.79},{0.89,0.89,0.80},{0.89,0.89,0.80},{0.89,0.89,0.81},{0.89,0.89,0.81},{0.90,0.90,0.82},{0.90,0.90,0.82},{0.90,0.90,0.83},{0.91,0.91,0.83},{0.91,0.91,0.84},{0.91,0.91,0.83},{0.92,0.92,0.84},{0.94,0.94,0.89},};
+  Double_t TRIGWEIGHT[18][2] = {{0.84,0.65},{0.87,0.67},{0.87,0.69},{0.88,0.70},{0.88,0.71},{0.89,0.73},{0.90,0.74},{0.90,0.75},{0.91,0.77},{0.91,0.77},{0.91,0.78},{0.92,0.79},{0.93,0.80},{0.93,0.81},{0.94,0.82},{0.94,0.83},{0.94,0.80},{0.94,0.79}};
   int counter[20]; for (int i=0; i<20; ++i) counter[i] = 0;
 
   _newfile = new TFile(_rootName.c_str(),"RECREATE");
@@ -79,7 +79,6 @@ void MyAna::Loop()
   TH1F* MUONS_ETA         = new TH1F("MUONS_ETA","MUONS_ETA",60,-3.,3.); 
   TH1F* MUONS_PHI         = new TH1F("MUONS_PHI","MUONS_PHI",64,-3.2,3.2); 
   TH1F* MUONS_PFISO       = new TH1F("MUONS_PFISO","MUONS_PFISO",110,0.,1.1);  
-  TH1F* MUONS_ISOLIKE     = new TH1F("MUONS_ISOLIKE","MUONS_ISOLIKE",110,0.,1.1);  
 
   TH1F* MUONS1_PT         = new TH1F("MUONS1_PT","MUONS1_PT",500,0.,500.);   
   TH1F* MUONS1_ETA        = new TH1F("MUONS1_ETA","MUONS1_ETA",60,-3.,3.); 
@@ -188,10 +187,10 @@ void MyAna::Loop()
   TH1F* TOP_M_RECO_ALL    = new TH1F("TOP_M_RECO_ALL","TOP_M_RECO_ALL",850,0,250);
   TH1F* DR_JPSI  	= new TH1F("DR_JPSI","DR_JPSI",400,0.,0.2);
   TH1F* DPT_JPSI 	= new TH1F("DPT_JPSI","DPT_JPSI",400,0.,0.2);
-  TH2F* DR_DPT_JPSI	= new TH2F("DR_DPT_JPSI","DR_DPT_JPSI",40,0.,2.,40,0,2.);
-  TH1F* DR_MU		= new TH1F("DR_MU","DR_MU",600,0.,3.);
-  TH1F* DPT_MU		= new TH1F("DPT_MU","DPT_MU",600,0.,3.);
-  TH2F* DR_DPT_MU	= new TH2F("DR_DPT_MU","DR_DPT_MU",60,0.,3.,60,0,3.);
+  TH2F* DR_DPT_JPSI	= new TH2F("DR_DPT_JPSI","DR_DPT_JPSI",40,0.,0.2,40,0,0.2);
+  TH1F* DR_EL		= new TH1F("DR_EL","DR_EL",600,0.,3.);
+  TH1F* DPT_EL		= new TH1F("DPT_EL","DPT_EL",600,0.,3.);
+  TH2F* DR_DPT_EL	= new TH2F("DR_DPT_EL","DR_DPT_EL",60,0.,3.,60,0,3.);
   TH1F* TOP_M_RECO_GP    = new TH1F("TOP_M_RECO_GP","TOP_M_RECO_GP",850,0,250);
   TH1F* TOP_M_RECO_WP    = new TH1F("TOP_M_RECO_WP","TOP_M_RECO_WP",850,0,250);
 
@@ -222,7 +221,7 @@ void MyAna::Loop()
   TH1F* TOP_M_RECO_ALL_SHIFT = new TH1F("TOP_M_RECO_ALL_SHIFT","TOP_M_RECO_ALL_SHIFT",850,0,250);
   TTree* M_RECO_ALL_SHIFT    = new TTree("M_RECO_ALL_SHIFT","M_RECO_ALL_SHIFT");
   float mass_reco_all_shift, weight_reco_all_shift;
-  const float hardshift = 0.5; // shift de hardshift GeV sur p_{T,J/#psi}
+  const float hardshift = 5; // shift de hardshift GeV sur p_{T,J/#psi}
   M_RECO_ALL_SHIFT->Branch("mass_shift", &mass_reco_all_shift, "mass_shift/F");  
   M_RECO_ALL_SHIFT->Branch("weight_shift", &weight_reco_all_shift, "weight_shift/F");  
 
@@ -231,7 +230,7 @@ void MyAna::Loop()
   TH1F* TOP_M_RECO_ALL_SMEAR = new TH1F("TOP_M_RECO_ALL_SMEAR","TOP_M_RECO_ALL_SMEAR",850,0,250);
   TTree* M_RECO_ALL_SMEAR    = new TTree("M_RECO_ALL_SMEAR","M_RECO_ALL_SMEAR");
   float mass_reco_all_smear, weight_reco_all_smear;
-  const float smear_rms = 1.;  //smearing su spectre du p_{T,J/#psi}
+  const float smear_rms = 10;  //smearing su spectre du p_{T,J/#psi}
   M_RECO_ALL_SMEAR->Branch("mass_smear", &mass_reco_all_smear, "mass_smear/F");  
   M_RECO_ALL_SMEAR->Branch("weight_smear", &weight_reco_all_smear, "weight_smear/F"); 
 
@@ -248,9 +247,12 @@ void MyAna::Loop()
   M_GEN_BHADL->Branch("mass_gen_bhadl", &mass_gen_bhadl, "mass_gen_bhadl/F");  
   M_GEN_BHADL->Branch("weight_gen_hadl", &weight_gen_bhadl, "weight_gen_bhadl/F");  
 
-  TFile *fi = TFile::Open("/gridgroup/cms/bouvier/CMSSW_5_3_9_patch2-v3/src/Extractors/JPsiExtractor/analysis/Plots_Mu_2jets40_chi5_mudist105_drjet03_ctausup_131203/TTbar173.root");
+  /*
+  TFile *fi = TFile::Open("/gridgroup/cms/bouvier/CMSSW_5_3_9_patch2-v3/src/Extractors/JPsiExtractor/analysis/Plots_El_2jets40_chi5_mudist105_drjet03_ctausup_131203/TTbar173.root");
   TH1F *hist_ref = (TH1F*) fi->Get("JPSI_PT");
-
+  */
+  TRandom3 *myRand = new TRandom3(0);
+ 
   //================================================================================================
   // Clone the tree
   //================================================================================================
@@ -318,13 +320,12 @@ void MyAna::Loop()
     bool passTrigger = false;
 
     //double Trigger_weight =1;
-
     if (!_isMC) {
       for ( unsigned int i=0; i<HLT_vector->size(); ++i){
         TString ThistrigName= (TString) HLT_vector->at(i);
-        if ( ThistrigName.Contains("HLT_IsoMu24_eta2p1") )  passTrigger = true;
+        if ( ThistrigName.Contains("HLT_Ele27_WP80")     )  passTrigger = true;
       }
-    }
+    }	
 
     if ( !passTrigger && !_isMC ) continue;  
     ++counter[5];
@@ -432,7 +433,7 @@ void MyAna::Loop()
 
     int ngoodlepton = ngoodelectron + ngoodmuon;
     CUTS_LEPTONS_N->Fill((float)ngoodlepton,WEIGHT);
-    if ( ngoodlepton != 1 || ngoodmuon != 1 ) continue;
+    if ( ngoodlepton != 1 || ngoodelectron !=1) continue;
     ++counter[1];
 
     ICUT->Fill((Double_t)icut,WEIGHT); cutName[icut] = "Exactly 1 lepton"; ++icut;
@@ -443,31 +444,28 @@ void MyAna::Loop()
     //================================================================================================ 
 
     int triglin = -1;
-    if (muPt->at(indgoodmu[0])>=26 && muPt->at(indgoodmu[0])<27) triglin = 0;
-    if (muPt->at(indgoodmu[0])>=27 && muPt->at(indgoodmu[0])<28) triglin = 1;
-    if (muPt->at(indgoodmu[0])>=28 && muPt->at(indgoodmu[0])<29) triglin = 2;
-    if (muPt->at(indgoodmu[0])>=29 && muPt->at(indgoodmu[0])<30) triglin = 3;
-    if (muPt->at(indgoodmu[0])>=30 && muPt->at(indgoodmu[0])<31) triglin = 4;
-    if (muPt->at(indgoodmu[0])>=31 && muPt->at(indgoodmu[0])<32) triglin = 5;
-    if (muPt->at(indgoodmu[0])>=32 && muPt->at(indgoodmu[0])<33) triglin = 6;
-    if (muPt->at(indgoodmu[0])>=33 && muPt->at(indgoodmu[0])<35) triglin = 7;
-    if (muPt->at(indgoodmu[0])>=35 && muPt->at(indgoodmu[0])<37) triglin = 8;
-    if (muPt->at(indgoodmu[0])>=37 && muPt->at(indgoodmu[0])<39) triglin = 9;
-    if (muPt->at(indgoodmu[0])>=39 && muPt->at(indgoodmu[0])<41) triglin = 10;
-    if (muPt->at(indgoodmu[0])>=41 && muPt->at(indgoodmu[0])<43) triglin = 11;
-    if (muPt->at(indgoodmu[0])>=43 && muPt->at(indgoodmu[0])<45) triglin = 12;
-    if (muPt->at(indgoodmu[0])>=45 && muPt->at(indgoodmu[0])<47) triglin = 13;
-    if (muPt->at(indgoodmu[0])>=47 && muPt->at(indgoodmu[0])<50) triglin = 14;
-    if (muPt->at(indgoodmu[0])>=50 && muPt->at(indgoodmu[0])<55) triglin = 15;
-    if (muPt->at(indgoodmu[0])>=55 && muPt->at(indgoodmu[0])<60) triglin = 16;
-    if (muPt->at(indgoodmu[0])>=60 && muPt->at(indgoodmu[0])<65) triglin = 17;
-    if (muPt->at(indgoodmu[0])>=65 && muPt->at(indgoodmu[0])<70) triglin = 18;
-    if (muPt->at(indgoodmu[0])>=70 && muPt->at(indgoodmu[0])<90) triglin = 19;
-    if (muPt->at(indgoodmu[0])>=90 )                             triglin = 20;
+    if (elPt->at(indgoodel[0])>=30 && elPt->at(indgoodel[0])<31) triglin = 0;
+    if (elPt->at(indgoodel[0])>=31 && elPt->at(indgoodel[0])<32) triglin = 1;
+    if (elPt->at(indgoodel[0])>=33 && elPt->at(indgoodel[0])<35) triglin = 3;
+    if (elPt->at(indgoodel[0])>=32 && elPt->at(indgoodel[0])<33) triglin = 2;
+    if (elPt->at(indgoodel[0])>=33 && elPt->at(indgoodel[0])<35) triglin = 3;
+    if (elPt->at(indgoodel[0])>=35 && elPt->at(indgoodel[0])<37) triglin = 4;
+    if (elPt->at(indgoodel[0])>=37 && elPt->at(indgoodel[0])<39) triglin = 5;
+    if (elPt->at(indgoodel[0])>=39 && elPt->at(indgoodel[0])<41) triglin = 6;
+    if (elPt->at(indgoodel[0])>=41 && elPt->at(indgoodel[0])<43) triglin = 7;
+    if (elPt->at(indgoodel[0])>=43 && elPt->at(indgoodel[0])<45) triglin = 8;
+    if (elPt->at(indgoodel[0])>=45 && elPt->at(indgoodel[0])<47) triglin = 9;
+    if (elPt->at(indgoodel[0])>=47 && elPt->at(indgoodel[0])<50) triglin = 10;
+    if (elPt->at(indgoodel[0])>=50 && elPt->at(indgoodel[0])<55) triglin = 11;
+    if (elPt->at(indgoodel[0])>=55 && elPt->at(indgoodel[0])<60) triglin = 12;
+    if (elPt->at(indgoodel[0])>=60 && elPt->at(indgoodel[0])<65) triglin = 13;
+    if (elPt->at(indgoodel[0])>=65 && elPt->at(indgoodel[0])<70) triglin = 14;
+    if (elPt->at(indgoodel[0])>=70 && elPt->at(indgoodel[0])<80) triglin = 15;
+    if (elPt->at(indgoodel[0])>=80 && elPt->at(indgoodel[0])<90) triglin = 16;
+    if (elPt->at(indgoodel[0])>=90 )  		                 triglin = 17;
     int trigcol = -1;
-    if (fabs(muEta->at(indgoodmu[0]))<0.8) trigcol = 0;
-    if (fabs(muEta->at(indgoodmu[0]))>=0.8 && fabs(muEta->at(indgoodmu[0]))<1.2) trigcol = 1;
-    if (fabs(muEta->at(indgoodmu[0]))>=1.2 && fabs(muEta->at(indgoodmu[0]))<2.1) trigcol = 2;
+    if (fabs(elEta->at(indgoodel[0]))<1.5) trigcol = 0;
+    if (fabs(elEta->at(indgoodel[0]))>=1.5 && fabs(elEta->at(indgoodel[0]))<2.5) trigcol = 1;
 
     if ( _isMC && triglin!=-1 &&  trigcol!=-1 ) WEIGHT = WEIGHT * TRIGWEIGHT[triglin][trigcol];  
 
@@ -514,7 +512,7 @@ void MyAna::Loop()
 
     if (_debug) cout << "Number of good jets = " << ngoodjet << endl;
 
-    //    if ( ngoodjet < 4 ) continue;
+    //   if ( ngoodjet < 4 ) continue;
     //if ( ngoodjet < 3 ) continue;
     //if ( ngoodjet < 2 ) continue;
     //if ( ngoodjet < 1 ) continue;
@@ -568,7 +566,7 @@ void MyAna::Loop()
         CUT_JPSICAND_M->Fill(GetP4(jpsi_4vector,j)->M(),WEIGHT);
         indgoodjpsi.push_back(j);
       }
-      }      
+      }
 
       if (_debug) cout << " Number of J/Psi candidate = " << n_jpsi << endl;
 
@@ -579,7 +577,7 @@ void MyAna::Loop()
 
       ICUT->Fill((Double_t)icut,WEIGHT); cutName[icut] = "Exactly 1 J/psi"; ++icut;
       ICUT->GetXaxis()->SetBinLabel(icut,"Exactly 1 J/#psi");
-      
+
       //======================================================
       // J/psi vertex reconstruction
       //======================================================
@@ -613,10 +611,10 @@ void MyAna::Loop()
       ICUT->GetXaxis()->SetBinLabel(icut,"... with chi^{2}<5");
 
       CUT_JPSICAND_L->Fill(jpsi_L3D[indgoodjpsi[0]],WEIGHT);
-       if ( jpsi_L3D[indgoodjpsi[0]] < 0.005 ) continue;
+      if ( jpsi_L3D[indgoodjpsi[0]] < 0.005 ) continue;
       ++counter[8];
       ICUT->Fill((Double_t)icut,WEIGHT); cutName[icut] = "... and L>0.005 cm"; ++icut;
-      ICUT->GetXaxis()->SetBinLabel(icut,"... and L>0.005 cm"); 
+      ICUT->GetXaxis()->SetBinLabel(icut,"... and L>0.005 cm");
 
       CUT_JPSICAND_LOVERSIG->Fill(jpsi_L3DoverSigmaL3D[indgoodjpsi[0]],WEIGHT);
       //    if ( jpsi_L3DoverSigmaL3D[indgoodjpsi[0]] > 2 ) continue;
@@ -638,26 +636,6 @@ void MyAna::Loop()
       ++counter[10];
       ICUT->Fill((Double_t)icut,WEIGHT); cutName[icut] = "... and dR J/psi-jet min <0.3"; ++icut;
       ICUT->GetXaxis()->SetBinLabel(icut,"... and dR J/psi-jet min <0.3");
-
-      //======================================================
-      //Isolation from muons
-      //======================================================
-
-      double dR1 = kinem::delta_R(GetP4(jpsi_mu1_4vector,indgoodjpsi[0])->Eta(),GetP4(jpsi_mu1_4vector,indgoodjpsi[0])->Phi(),muEta->at(indgoodmu[0]),muPhi->at(indgoodmu[0]));
-      double dR2 = kinem::delta_R(GetP4(jpsi_mu2_4vector,indgoodjpsi[0])->Eta(),GetP4(jpsi_mu2_4vector,indgoodjpsi[0])->Phi(),muEta->at(indgoodmu[0]),muPhi->at(indgoodmu[0]));
-      if ( dR1 < 0.005 || dR2 < 0.005 ) continue;
-
-      double isolike = 0;
-      if ( dR1 < 0.4 || dR2 < 0.4) {
-        isolike = (muon_deltaBetaCorrectedRelIsolation[indgoodmu[0]]*muPt->at(indgoodmu[0]) 
-            + GetP4(jpsi_mu1_4vector,indgoodjpsi[0])->Pt() + GetP4(jpsi_mu2_4vector,indgoodjpsi[0])->Pt()) / muPt->at(indgoodmu[0]);
-        cout << "isolike calculation... before = " << muon_deltaBetaCorrectedRelIsolation[indgoodmu[0]] << " after = " << isolike << endl;
-      } else isolike = muon_deltaBetaCorrectedRelIsolation[indgoodmu[0]];
-      if (isolike>0.12) continue;
-
-      ++counter[14];
-      ICUT->Fill((Double_t)icut,WEIGHT); cutName[icut] = "Tighter isolated lepton"; ++icut;
-      ICUT->GetXaxis()->SetBinLabel(icut,"Tighter isolated lepton");
 
       //================================================================================================
       // Cuts
@@ -724,7 +702,6 @@ void MyAna::Loop()
         MUONS_ETA->Fill(GetP4(muon_4vector,indgoodmu[j])->Eta(),WEIGHT);
         MUONS_PHI->Fill(GetP4(muon_4vector,indgoodmu[j])->Phi(),WEIGHT);
         MUONS_PFISO->Fill(muon_deltaBetaCorrectedRelIsolation[indgoodmu[j]],WEIGHT);
-        MUONS_ISOLIKE->Fill(isolike,WEIGHT);
 
         if ( j == 0 ) {
           MUONS1_PT->Fill(GetP4(muon_4vector,indgoodmu[j])->Pt(),WEIGHT);
@@ -772,8 +749,8 @@ void MyAna::Loop()
       MET_MET->Fill(MET_Pt,WEIGHT);
       MET_PHI->Fill(MET_Phi,WEIGHT);
 
-      double Delta_Phi_mu_met=kinem::delta_phi(muPhi->at(indgoodmu[0]),MET_Phi);     
-      float wmt  = sqrt(2*MET_Pt*muPt->at(indgoodmu[0])*( 1-cos(Delta_Phi_mu_met) ) );
+      double Delta_Phi_el_met=kinem::delta_phi(elPhi->at(indgoodel[0]),MET_Phi);     
+      float wmt  = sqrt(2*MET_Pt*elPt->at(indgoodel[0])*( 1-cos(Delta_Phi_el_met) ) );
       WMT->Fill(wmt,WEIGHT);
 
       // Vertices :
@@ -781,9 +758,9 @@ void MyAna::Loop()
 
       int nvertex = 0;
 
-      float distleptvertgood0 = sqrt(pow((muon_vx[indgoodmu[0]]-vertex_vx[indgoodver[0]]),2.)+pow((muon_vy[indgoodmu[0]]-vertex_vy[indgoodver[0]]),2.)+pow((muon_vz[indgoodmu[0]]-vertex_vz[indgoodver[0]]),2.));
-      float distleptvertmin = sqrt(pow((muon_vx[indgoodmu[0]]-vertex_vx[indgoodver[0]]),2.)+pow((muon_vy[indgoodmu[0]]-vertex_vy[indgoodver[0]]),2.)+pow((muon_vz[indgoodmu[0]]-vertex_vz[indgoodver[0]]),2.));
-      float distleptvertj = sqrt(pow((muon_vx[indgoodmu[0]]-vertex_vx[indgoodver[0]]),2.)+pow((muon_vy[indgoodmu[0]]-vertex_vy[indgoodver[0]]),2.)+pow((muon_vz[indgoodmu[0]]-vertex_vz[indgoodver[0]]),2.));
+      float distleptvertgood0 = sqrt(pow((electron_vx[indgoodel[0]]-vertex_vx[indgoodver[0]]),2.)+pow((electron_vy[indgoodel[0]]-vertex_vy[indgoodver[0]]),2.)+pow((electron_vz[indgoodel[0]]-vertex_vz[indgoodver[0]]),2.));
+      float distleptvertmin = sqrt(pow((electron_vx[indgoodel[0]]-vertex_vx[indgoodver[0]]),2.)+pow((electron_vy[indgoodel[0]]-vertex_vy[indgoodver[0]]),2.)+pow((electron_vz[indgoodel[0]]-vertex_vz[indgoodver[0]]),2.));
+      float distleptvertj = sqrt(pow((electron_vx[indgoodel[0]]-vertex_vx[indgoodver[0]]),2.)+pow((electron_vy[indgoodel[0]]-vertex_vy[indgoodver[0]]),2.)+pow((electron_vz[indgoodel[0]]-vertex_vz[indgoodver[0]]),2.));
       float jmin = 0;
 
       for (unsigned int j=0; j<indgoodver.size(); ++j ) {
@@ -791,7 +768,7 @@ void MyAna::Loop()
         if (vertex_ndof[j] <= 4) continue;   
         ++nvertex;
 
-        distleptvertj = sqrt(pow((muon_vx[indgoodmu[0]]-vertex_vx[indgoodver[j]]),2.)+pow((muon_vy[indgoodmu[0]]-vertex_vy[indgoodver[j]]),2.)+pow((muon_vz[indgoodmu[0]]-vertex_vz[indgoodver[j]]),2.));
+        distleptvertj = sqrt(pow((electron_vx[indgoodel[0]]-vertex_vx[indgoodver[j]]),2.)+pow((electron_vy[indgoodel[0]]-vertex_vy[indgoodver[j]]),2.)+pow((electron_vz[indgoodel[0]]-vertex_vz[indgoodver[j]]),2.));
 
         if (distleptvertj<distleptvertmin) {
           distleptvertmin=distleptvertj;
@@ -868,10 +845,10 @@ void MyAna::Loop()
       float pz_reco = 0.;
       float e_reco = 0.;
 
-      px_reco = GetP4(jpsi_4vector,indgoodjpsi[0])->Px() + GetP4(muon_4vector,indgoodmu[0])->Px();
-      py_reco = GetP4(jpsi_4vector,indgoodjpsi[0])->Py() + GetP4(muon_4vector,indgoodmu[0])->Py();
-      pz_reco = GetP4(jpsi_4vector,indgoodjpsi[0])->Pz() + GetP4(muon_4vector,indgoodmu[0])->Pz();
-      e_reco  = GetP4(jpsi_4vector,indgoodjpsi[0])->E()  + GetP4(muon_4vector,indgoodmu[0])->E();
+      px_reco = GetP4(jpsi_4vector,indgoodjpsi[0])->Px() + GetP4(electron_4vector,indgoodel[0])->Px();
+      py_reco = GetP4(jpsi_4vector,indgoodjpsi[0])->Py() + GetP4(electron_4vector,indgoodel[0])->Py();
+      pz_reco = GetP4(jpsi_4vector,indgoodjpsi[0])->Pz() + GetP4(electron_4vector,indgoodel[0])->Pz();
+      e_reco  = GetP4(jpsi_4vector,indgoodjpsi[0])->E()  + GetP4(electron_4vector,indgoodel[0])->E();
 
       float p_reco  = sqrt(pow(px_reco,2)+pow(py_reco,2)+pow(pz_reco,2));
       float pt_reco = sqrt(pow(px_reco,2)+pow(py_reco,2));
@@ -910,10 +887,10 @@ void MyAna::Loop()
         double dr_l = 100.;
         double dpt_l = 100.;
         for ( int i=0; i<n_MCs; ++i) {
-          if(fabs(MC_type[i])==13){
-            double dr_l_tmp = kinem::delta_R(GetP4(muon_4vector,indgoodmu[0])->Eta(),GetP4(muon_4vector,indgoodmu[0])->Phi(),MC_eta[i],MC_phi[i]);
+          if(fabs(MC_type[i])==11){
+            double dr_l_tmp = kinem::delta_R(GetP4(electron_4vector,indgoodel[0])->Eta(),GetP4(electron_4vector,indgoodel[0])->Phi(),MC_eta[i],MC_phi[i]);
             double MC_pt = sqrt( MC_px[i] * MC_px[i] + MC_py[i] * MC_py[i] );
-            double dpt_l_tmp = fabs(GetP4(muon_4vector,indgoodmu[0])->Pt()-MC_pt)/fabs(MC_pt);
+            double dpt_l_tmp = fabs(GetP4(electron_4vector,indgoodel[0])->Pt()-MC_pt)/fabs(MC_pt);
             if (dpt_l_tmp<dpt_l && dr_l_tmp<dr_l) {
               dr_l = dr_l_tmp;
               dpt_l = dpt_l_tmp;
@@ -921,9 +898,9 @@ void MyAna::Loop()
             }
           }
         }  
-        DR_MU->Fill(dr_l, WEIGHT);  
-        DPT_MU->Fill(dpt_l, WEIGHT);  
-        DR_DPT_MU->Fill(dr_l, dpt_l, WEIGHT);
+        DR_EL->Fill(dr_l, WEIGHT);  
+        DPT_EL->Fill(dpt_l, WEIGHT);  
+        DR_DPT_EL->Fill(dr_l, dpt_l, WEIGHT);
         if (dr_l<0.05) LeptonMatched = true;
 
         if (_debug) {
@@ -931,7 +908,7 @@ void MyAna::Loop()
             << "from top : " << MC_JPsiFromTop[indJPsi]
             << "... from antitop : " << MC_JPsiFromAntiTop[indJPsi]
             << endl;
-          cout << "muon... " 
+          cout << "electron... " 
             << "from top : " << MC_LeptonFromTop[indLepton]
             << "... from antitop : " << MC_LeptonFromAntiTop[indLepton]
             << endl;
@@ -956,8 +933,8 @@ void MyAna::Loop()
             MASS_BHADL->Fill(mass_gen_bhadl,WEIGHT);
             weight_gen_bhadl = WEIGHT;
             M_GEN_BHADL->Fill();
-
           }
+
           if (goodpaired) {
             TOP_M_RECO_GP->Fill(m_reco,WEIGHT);
             ++counter[12];
@@ -965,7 +942,7 @@ void MyAna::Loop()
             TOP_M_RECO_WP->Fill(m_reco,WEIGHT);
             ++counter[13];
           }
-        }  
+        }
 
         if (fabs(MC_JPsi_e[indJPsi])>0 && fabs(MC_Bhad_e[indJPsi])>0) {
           X_E_JPSI_BHAD_GEN->Fill(MC_JPsi_e[indJPsi]/MC_Bhad_e[indJPsi],WEIGHT);
@@ -976,7 +953,7 @@ void MyAna::Loop()
         if (fabs(MC_JPsi_e[indJPsi])>0 && fabs(MC_Bquark_e[indJPsi])>0) {
           X_E_JPSI_BQUARK_GEN->Fill(MC_JPsi_e[indJPsi]/MC_Bquark_e[indJPsi],WEIGHT);
           double pt_jpsi_gen   = sqrt(pow(MC_JPsi_px[indJPsi],2.)+pow(MC_JPsi_py[indJPsi],2.)) ; 
-          double pt_bquark_gen = sqrt(pow(MC_Bquark_px[indJPsi],2.)+pow(MC_Bquark_py[indJPsi],2.)) ;
+          double pt_bquark_gen  = sqrt(pow(MC_Bquark_px[indJPsi],2.)+pow(MC_Bquark_py[indJPsi],2.)) ;
           X_PT_JPSI_BQUARK_GEN->Fill(pt_jpsi_gen/pt_bquark_gen,WEIGHT);
         }
         if (fabs(MC_Bquark_e[indJPsi])>0 && fabs(MC_Bhad_e[indJPsi])>0) {
@@ -988,7 +965,7 @@ void MyAna::Loop()
           DR_BHAD_BQUARK->Fill(deltar_bhad_bquark,WEIGHT);
           if (MC_Bhad_e[indJPsi]/MC_Bquark_e[indJPsi] > 1.) DR_BHAD_BQUARK_1->Fill(deltar_bhad_bquark,WEIGHT);
         }
-        if (MC_Bhad_id[indJPsi] !=0) BHAD_ID_GEN->Fill(MC_Bhad_id[indJPsi],WEIGHT);
+        if (MC_Bhad_id[indJPsi] != 0) BHAD_ID_GEN->Fill(MC_Bhad_id[indJPsi],WEIGHT);
 
       }
 
@@ -998,8 +975,8 @@ void MyAna::Loop()
       M_RECO_ALL->Fill();
 
       double shift = 0.5 * ( ((GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py())/fabs(GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py())) * sqrt(pow(GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py(),2.)+2.*hardshift*(hardshift+2.*pt_reco)) - (GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py()));
-      double p_reco_prime_square = pow(p_reco,2.) + 2.*shift*(GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py()+GetP4(muon_4vector,indgoodmu[0])->Px()+GetP4(muon_4vector,indgoodmu[0])->Py()+shift);
-      double e_reco_prime = GetP4(muon_4vector,indgoodmu[0])->E() + sqrt(pow(GetP4(jpsi_4vector,indgoodjpsi[0])->E(),2.)+hardshift*(2.*GetP4(jpsi_4vector,indgoodjpsi[0])->Pt()+hardshift));
+      double p_reco_prime_square = pow(p_reco,2.) + 2.*shift*(GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py()+GetP4(electron_4vector,indgoodel[0])->Px()+GetP4(electron_4vector,indgoodel[0])->Py()+shift);
+      double e_reco_prime = GetP4(electron_4vector,indgoodel[0])->E() + sqrt(pow(GetP4(jpsi_4vector,indgoodjpsi[0])->E(),2.)+hardshift*(2.*GetP4(jpsi_4vector,indgoodjpsi[0])->Pt()+hardshift));
       double e_reco_prime_square = pow(e_reco_prime,2.);
       mass_reco_all_shift = e_reco_prime_square - p_reco_prime_square;
       if ( mass_reco_all_shift >= 0 ) mass_reco_all_shift = sqrt(mass_reco_all_shift); 
@@ -1011,15 +988,18 @@ void MyAna::Loop()
       }
       JPSI_PT_SHIFT->Fill(GetP4(jpsi_4vector,indgoodjpsi[0])->Pt()+hardshift,weight_reco_all_shift);
 
-      double hardsmear = 0.;
+      double hardsmear = myRand->Gaus(0.,smear_rms);//0.;
+/*
       for (int t=1; t < 499; t++) {
-        hardsmear = hardsmear + hist_ref->GetBinContent(t)*exp(-0.5*pow(t/smear_rms,2.))/(2.50662827463108284*smear_rms);
+        //hardsmear = hardsmear + hist_ref->GetBinContent(t)*exp(-0.5*pow((t-GetP4(jpsi_4vector,indgoodjpsi[0])->Pt())/smear_rms,2.))/(2.50662827463108284*smear_rms);
+        hardsmear = hardsmear + GetP4(jpsi_4vector,indgoodjpsi[0])->Pt()*exp(-0.5*pow((t-GetP4(jpsi_4vector,indgoodjpsi[0])->Pt())/smear_rms,2.))/(2.50662827463108284*smear_rms*hist_ref->GetBinContent(GetP4(jpsi_4vector,indgoodjpsi[0])->Pt()));
       }
+*/
       JPSI_PT_SMEAR->Fill(GetP4(jpsi_4vector,indgoodjpsi[0])->Pt()+hardsmear,WEIGHT);
       PT_SMEARING->Fill(GetP4(jpsi_4vector,indgoodjpsi[0])->Pt(),WEIGHT*exp(-0.5*pow(GetP4(jpsi_4vector,indgoodjpsi[0])->Pt()/smear_rms,2.))/(2.50662827463108284*smear_rms));
       double smear = 0.5 * ( ((GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py())/fabs(GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py())) * sqrt(pow(GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py(),2.)+2.*hardsmear*(hardsmear+2.*pt_reco)) - (GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py()));
-      double p_prime_square = pow(p_reco,2.) + 2.*smear*(GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py()+GetP4(muon_4vector,indgoodmu[0])->Px()+GetP4(muon_4vector,indgoodmu[0])->Py()+smear);
-      double e_prime = GetP4(muon_4vector,indgoodmu[0])->E() + sqrt(pow(GetP4(jpsi_4vector,indgoodjpsi[0])->E(),2.)+hardsmear*(2.*GetP4(jpsi_4vector,indgoodjpsi[0])->Pt()+hardsmear));
+      double p_prime_square = pow(p_reco,2.) + 2.*smear*(GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py()+GetP4(electron_4vector,indgoodel[0])->Px()+GetP4(electron_4vector,indgoodel[0])->Py()+smear);
+      double e_prime = GetP4(electron_4vector,indgoodel[0])->E() + sqrt(pow(GetP4(jpsi_4vector,indgoodjpsi[0])->E(),2.)+hardsmear*(2.*GetP4(jpsi_4vector,indgoodjpsi[0])->Pt()+hardsmear));
       mass_reco_all_smear = pow(e_prime,2.)-p_prime_square;
       if ( mass_reco_all_smear >= 0 ) mass_reco_all_smear = sqrt(mass_reco_all_smear); 
       else                            mass_reco_all_smear = 0.;
@@ -1029,9 +1009,9 @@ void MyAna::Loop()
         M_RECO_ALL_SMEAR->Fill();
       }
  
-      double both = 0.5 * ( ((GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py()+2.*smear)/fabs(GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py()+2.*smear)) * sqrt(pow(GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py()+2.*smear,2.)+2.*hardshift*(hardshift+2.*sqrt(p_prime_square-pow(GetP4(jpsi_4vector,indgoodjpsi[0])->Pz()+GetP4(muon_4vector,indgoodmu[0])->Pz(),2.)))) - (GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py()+2.*smear));
-      double p_square = p_prime_square + 2.*both*(GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+2.*smear+GetP4(jpsi_4vector,indgoodjpsi[0])->Py()+GetP4(muon_4vector,indgoodmu[0])->Px()+GetP4(muon_4vector,indgoodmu[0])->Py()+smear);
-      double e_both = GetP4(muon_4vector,indgoodmu[0])->E() + sqrt(pow(GetP4(jpsi_4vector,indgoodjpsi[0])->E(),2.)+hardsmear*(2.*GetP4(jpsi_4vector,indgoodjpsi[0])->Pt()+2.*hardsmear)+hardshift*(2.*GetP4(jpsi_4vector,indgoodjpsi[0])->Pt()+hardshift));
+      double both = 0.5 * ( ((GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py()+2.*smear)/fabs(GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py()+2.*smear)) * sqrt(pow(GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py()+2.*smear,2.)+2.*hardshift*(hardshift+2.*sqrt(p_prime_square-pow(GetP4(jpsi_4vector,indgoodjpsi[0])->Pz()+GetP4(electron_4vector,indgoodel[0])->Pz(),2.)))) - (GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py()+2.*smear));
+      double p_square = p_prime_square + 2.*both*(GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+2.*smear+GetP4(jpsi_4vector,indgoodjpsi[0])->Py()+GetP4(electron_4vector,indgoodel[0])->Px()+GetP4(electron_4vector,indgoodel[0])->Py()+smear);
+      double e_both = GetP4(electron_4vector,indgoodel[0])->E() + sqrt(pow(GetP4(jpsi_4vector,indgoodjpsi[0])->E(),2.)+hardsmear*(2.*GetP4(jpsi_4vector,indgoodjpsi[0])->Pt()+2.*hardsmear)+hardshift*(2.*GetP4(jpsi_4vector,indgoodjpsi[0])->Pt()+hardshift));
       double e_square = pow(e_both,2.);
       mass_reco_all_both = e_square - p_square;
       if ( mass_reco_all_both >= 0 ) mass_reco_all_both = sqrt(mass_reco_all_both); 
@@ -1063,10 +1043,11 @@ void MyAna::Loop()
 
       float dR = 0.;
       float dPhi = 0.;
-      dR = kinem::delta_R(GetP4(jpsi_4vector,indgoodjpsi[0])->Eta(),GetP4(jpsi_4vector,indgoodjpsi[0])->Phi(),GetP4(muon_4vector,indgoodmu[0])->Eta(),GetP4(muon_4vector,indgoodmu[0])->Phi());
+      dR = kinem::delta_R(GetP4(jpsi_4vector,indgoodjpsi[0])->Eta(),GetP4(jpsi_4vector,indgoodjpsi[0])->Phi(),GetP4(electron_4vector,indgoodel[0])->Eta(),GetP4(electron_4vector,indgoodel[0])->Phi());
       DRJPSILEPTON->Fill(dR,WEIGHT);
-      dPhi = kinem::delta_phi(GetP4(jpsi_4vector,indgoodjpsi[0])->Phi(),GetP4(muon_4vector,indgoodmu[0])->Phi());
+      dPhi = kinem::delta_phi(GetP4(jpsi_4vector,indgoodjpsi[0])->Phi(),GetP4(electron_4vector,indgoodel[0])->Phi());
       DPHIJPSILEPTON->Fill(dPhi,WEIGHT);
+
 
       // Candidates:    
       if (_debug) {
@@ -1151,7 +1132,6 @@ void MyAna::Loop()
         TOPHAD_WMASS->Fill(jjcomb[indjj].M(),WEIGHT);
       }
 
-
       //===============================================================================================
       // Write new tree
       //===============================================================================================
@@ -1200,7 +1180,6 @@ void MyAna::Loop()
     cout << "... and L>0.005 cm                                              = " << counter[8] << endl;
     //  cout << "... and L/sigma>2                                               = " << counter[9] << endl;
     cout << "... and dR J/psi-jet min <0.3                                   = " << counter[10] << endl;
-    cout << "Tighter isolated lepton                                         = " << counter[14] << endl;
     if (_isMC && _isSIG) {
       cout << "========================================================================" << endl;
       cout << "Events matched to MC truth (DeltaR<0.05 for J/psi and lepton)   = " << counter[11] << endl;
@@ -1211,7 +1190,7 @@ void MyAna::Loop()
     cout << "Total Number of events skimmed                                  = "  << nwrite			   << endl;
     cout << "========================================================================" << endl;
 
-    fi->Close(); delete fi; 
+//    fi->Close(); delete fi; 
 
     _newfile->Write();
     _newfile->Close();

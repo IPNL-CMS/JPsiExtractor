@@ -122,24 +122,24 @@ void grapherror_style(TGraphErrors *gr,
 
 }
 
-int PlotJpsiPt(TString channel) {
+int PlotJpsiPt(TString channel, TString date="140109", bool tosave=false) {
 
   vector<TString> inputfilename; 
-  inputfilename.push_back("_2jets40_chi5_mudist105_drjet03_ctausup_shift2_smear4_140108/TTbar173.root");
-  inputfilename.push_back("_2jets40_chi5_mudist105_drjet03_ctausup_shift4_smear8_140108/TTbar173.root");
+  inputfilename.push_back("_2jets40_chi5_mudist105_drjet03_ctausup_shift2_smear4_140109/TTbar173.root");
+  inputfilename.push_back("_2jets40_chi5_mudist105_drjet03_ctausup_shift4_smear8_140109/TTbar173.root");
   
   TString outname = "JpsiPt_";
 
   if ( channel.Contains("mu") || channel.Contains("Mu") ) {
     channel = "Muons channel";
-    outname = outname + "Mu_MGsl_rebin4";
+    outname = outname + "Mu_PY6l_rebin4_" + date;
     for (unsigned int i = 0; i < inputfilename.size(); i++) {
       inputfilename[i] = "Plots_Mu" + inputfilename[i]; 
     }
   }
   else if ( channel.Contains("el") || channel.Contains("El") ) {
     channel = "Electrons channel";
-    outname = outname + "El_MGsl_rebin4";
+    outname = outname + "El_PY6l_rebin4_" + date;
     for (unsigned int i = 0; i < inputfilename.size(); i++) {
       inputfilename[i] = "Plots_El" + inputfilename[i]; 
     }
@@ -165,27 +165,27 @@ int PlotJpsiPt(TString channel) {
   Float_t inter = nothing->GetXaxis()->GetXmax() - nothing->GetXaxis()->GetXmin();
   Float_t num   = (inter/(Float_t)nothing->GetXaxis()->GetNbins());
   TString ytitle;
-  if (1000.*num<1.) ytitle = TString::Format("Events / (%0.4f GeV/c^{2})", num);
+  if (1000.*num<1.) ytitle = TString::Format("Events / (%0.4f GeV/c)", num);
   else {
-    if (100.*num<1.) ytitle = TString::Format("Events / (%0.3f GeV/c^{2})", num);
+    if (100.*num<1.) ytitle = TString::Format("Events / (%0.3f GeV/c)", num);
     else {
-      if (10.*num<1.) ytitle = TString::Format("Events / (%0.2f GeV/c^{2})", num);
+      if (10.*num<1.) ytitle = TString::Format("Events / (%0.2f GeV/c)", num);
       else {
-        if (num<1.) ytitle = TString::Format("Events / (%0.1f GeV/c^{2})", num);
-        else ytitle = TString::Format("Events / (%1.0f GeV/c^{2})", num);
+        if (num<1.) ytitle = TString::Format("Events / (%0.1f GeV/c)", num);
+        else ytitle = TString::Format("Events / (%1.0f GeV/c)", num);
       } 
     } 
   }
-  h1_style(nothing,2,30,1,30,0,-1111.,nothing->GetMaximum()*1.2,510,510,1,30,1,0,"MadGraph semi-leptonic t#bar{t} events","M_{J/#psi} (GeV/c^{2})",ytitle); 
+  h1_style(nothing,2,30,1,30,0,-1111.,nothing->GetMaximum()*1.2,510,510,1,30,1,0,"Pythia6 leptonic t#bar{t} events","p_{T}(J/#psi) (GeV/c)",ytitle); 
   h1_style(shift,2,38,1,38,0,-1111.,-1111.,510,510,1,38,1,0,"","",ytitle); 
   h1_style(smear,2,46,1,46,0,-1111.,-1111.,510,510,1,46,1,0,"","",ytitle); 
   cn->cd(); 
   nothing->Draw("hist");
   shift->Draw("histsame");
   smear->Draw("histsame");
-  leg->AddEntry(nothing,"#splitline{MadGraph semi-leptonic}{t#bar{t} events}","l"); 
-  leg->AddEntry(shift,"p_{T}(J/#psi) shifted of 4 GeV/c^{2}","l");
-  leg->AddEntry(smear,"p_{T}(J/#psi) smeared by 4 GeV/c^{2}","l");
+  leg->AddEntry(nothing,"Pythia6 leptonic t#bar{t} events","l"); 
+  leg->AddEntry(shift,"p_{T}(J/#psi) shifted of 4 GeV/c","l");
+  leg->AddEntry(smear,"p_{T}(J/#psi) smeared by 4 GeV/c","l");
   leg_style(leg);
   leg->Draw();
   latex->DrawLatex(120,200,channel);
@@ -193,8 +193,10 @@ int PlotJpsiPt(TString channel) {
   cn->Modified();
   gPad->Update();
 
-  cn->Print("Plots/"+outname+".eps");
-  cn->Print("Plots/"+outname+".jpg");
-  cn->Print("Plots/"+outname+".pdf");
-  cn->Print("Plots/"+outname+".C");
+  if (tosave==true) {
+    cn->Print("Plots/"+outname+".eps");
+    cn->Print("Plots/"+outname+".jpg");
+    cn->Print("Plots/"+outname+".pdf");
+    cn->Print("Plots/"+outname+".C");
+  }
 }

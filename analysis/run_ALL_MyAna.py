@@ -6,8 +6,18 @@
 
 import sys, os, string, shutil
 
-#outRoot ="Plots_El_2jets40_chi5_mudist105_drjet03_ctausup_shiftd_smear1_140108"
-outRoot ="Plots_Mu_2jets40_chi5_mudist105_drjet03_ctausup_shiftd_smear1_140108"
+#outRoot ="Plots_El_2jets40_chi5_mudist105_drjet03_ctausup_shiftd_smear1_140110"
+#outRoot ="Plots_Mu_2jets40_chi5_mudist105_drjet03_ctausup_shiftd_smear1_140110"
+#outRoot ="Plots_El_2jets40_chi5_mudist105_drjet03_ctausup_shift1_smear2_140110"
+#outRoot ="Plots_Mu_2jets40_chi5_mudist105_drjet03_ctausup_shift1_smear2_140110"
+#outRoot ="Plots_El_2jets40_chi5_mudist105_drjet03_ctausup_shift2_smear4_140110"
+#outRoot ="Plots_Mu_2jets40_chi5_mudist105_drjet03_ctausup_shift2_smear4_140110"
+#outRoot ="Plots_El_2jets40_chi5_mudist105_drjet03_ctausup_shift3_smear6_140110"
+#outRoot ="Plots_Mu_2jets40_chi5_mudist105_drjet03_ctausup_shift3_smear6_140110"
+#outRoot ="Plots_El_2jets40_chi5_mudist105_drjet03_ctausup_shift4_smear8_140110"
+#outRoot ="Plots_Mu_2jets40_chi5_mudist105_drjet03_ctausup_shift4_smear8_140110"
+outRoot ="Plots_El_2jets40_chi5_mudist105_drjet03_ctausup_shift5_smear10_140110"
+#outRoot ="Plots_Mu_2jets40_chi5_mudist105_drjet03_ctausup_shift5_smear10_140110"
 #outRoot = "Skim_1lepton_1jpsi_131218"
 exe = "./runMyAna"
 

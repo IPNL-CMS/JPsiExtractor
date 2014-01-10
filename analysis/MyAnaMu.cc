@@ -222,7 +222,7 @@ void MyAna::Loop()
   TH1F* TOP_M_RECO_ALL_SHIFT = new TH1F("TOP_M_RECO_ALL_SHIFT","TOP_M_RECO_ALL_SHIFT",850,0,250);
   TTree* M_RECO_ALL_SHIFT    = new TTree("M_RECO_ALL_SHIFT","M_RECO_ALL_SHIFT");
   float mass_reco_all_shift, weight_reco_all_shift;
-  const float hardshift = 0.5; // shift de hardshift GeV sur p_{T,J/#psi}
+  const float hardshift = 5; // shift de hardshift GeV sur p_{T,J/#psi}
   M_RECO_ALL_SHIFT->Branch("mass_shift", &mass_reco_all_shift, "mass_shift/F");  
   M_RECO_ALL_SHIFT->Branch("weight_shift", &weight_reco_all_shift, "weight_shift/F");  
 
@@ -231,7 +231,7 @@ void MyAna::Loop()
   TH1F* TOP_M_RECO_ALL_SMEAR = new TH1F("TOP_M_RECO_ALL_SMEAR","TOP_M_RECO_ALL_SMEAR",850,0,250);
   TTree* M_RECO_ALL_SMEAR    = new TTree("M_RECO_ALL_SMEAR","M_RECO_ALL_SMEAR");
   float mass_reco_all_smear, weight_reco_all_smear;
-  const float smear_rms = 1.;  //smearing su spectre du p_{T,J/#psi}
+  const float smear_rms = 10;  //smearing su spectre du p_{T,J/#psi}
   M_RECO_ALL_SMEAR->Branch("mass_smear", &mass_reco_all_smear, "mass_smear/F");  
   M_RECO_ALL_SMEAR->Branch("weight_smear", &weight_reco_all_smear, "weight_smear/F"); 
 
@@ -248,9 +248,12 @@ void MyAna::Loop()
   M_GEN_BHADL->Branch("mass_gen_bhadl", &mass_gen_bhadl, "mass_gen_bhadl/F");  
   M_GEN_BHADL->Branch("weight_gen_hadl", &weight_gen_bhadl, "weight_gen_bhadl/F");  
 
+  /*
   TFile *fi = TFile::Open("/gridgroup/cms/bouvier/CMSSW_5_3_9_patch2-v3/src/Extractors/JPsiExtractor/analysis/Plots_Mu_2jets40_chi5_mudist105_drjet03_ctausup_131203/TTbar173.root");
   TH1F *hist_ref = (TH1F*) fi->Get("JPSI_PT");
-
+  */
+  TRandom3 *myRand = new TRandom3(0);
+  
   //================================================================================================
   // Clone the tree
   //================================================================================================
@@ -1011,10 +1014,13 @@ void MyAna::Loop()
       }
       JPSI_PT_SHIFT->Fill(GetP4(jpsi_4vector,indgoodjpsi[0])->Pt()+hardshift,weight_reco_all_shift);
 
-      double hardsmear = 0.;
+      double hardsmear = myRand->Gaus(0.,smear_rms);//0.;
+/*
       for (int t=1; t < 499; t++) {
-        hardsmear = hardsmear + hist_ref->GetBinContent(t)*exp(-0.5*pow(t/smear_rms,2.))/(2.50662827463108284*smear_rms);
+        //hardsmear = hardsmear + hist_ref->GetBinContent(t)*exp(-0.5*pow((t-GetP4(jpsi_4vector,indgoodjpsi[0])->Pt())/smear_rms,2.))/(2.50662827463108284*smear_rms);
+        hardsmear = hardsmear + GetP4(jpsi_4vector,indgoodjpsi[0])->Pt()*exp(-0.5*pow((t-GetP4(jpsi_4vector,indgoodjpsi[0])->Pt())/smear_rms,2.))/(2.50662827463108284*smear_rms*hist_ref->GetBinContent(GetP4(jpsi_4vector,indgoodjpsi[0])->Pt()));
       }
+*/
       JPSI_PT_SMEAR->Fill(GetP4(jpsi_4vector,indgoodjpsi[0])->Pt()+hardsmear,WEIGHT);
       PT_SMEARING->Fill(GetP4(jpsi_4vector,indgoodjpsi[0])->Pt(),WEIGHT*exp(-0.5*pow(GetP4(jpsi_4vector,indgoodjpsi[0])->Pt()/smear_rms,2.))/(2.50662827463108284*smear_rms));
       double smear = 0.5 * ( ((GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py())/fabs(GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py())) * sqrt(pow(GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py(),2.)+2.*hardsmear*(hardsmear+2.*pt_reco)) - (GetP4(jpsi_4vector,indgoodjpsi[0])->Px()+GetP4(jpsi_4vector,indgoodjpsi[0])->Py()));
@@ -1211,7 +1217,7 @@ void MyAna::Loop()
     cout << "Total Number of events skimmed                                  = "  << nwrite			   << endl;
     cout << "========================================================================" << endl;
 
-    fi->Close(); delete fi; 
+    //fi->Close(); delete fi; 
 
     _newfile->Write();
     _newfile->Close();
