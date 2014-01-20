@@ -221,7 +221,7 @@ void MyAna::Loop()
   TH1F* TOP_M_RECO_ALL_SHIFT = new TH1F("TOP_M_RECO_ALL_SHIFT","TOP_M_RECO_ALL_SHIFT",850,0,250);
   TTree* M_RECO_ALL_SHIFT    = new TTree("M_RECO_ALL_SHIFT","M_RECO_ALL_SHIFT");
   float mass_reco_all_shift, weight_reco_all_shift;
-  const float hardshift = 5; // shift de hardshift GeV sur p_{T,J/#psi}
+  const float hardshift = 0.5; // shift de hardshift GeV sur p_{T,J/#psi}
   M_RECO_ALL_SHIFT->Branch("mass_shift", &mass_reco_all_shift, "mass_shift/F");  
   M_RECO_ALL_SHIFT->Branch("weight_shift", &weight_reco_all_shift, "weight_shift/F");  
 
@@ -230,7 +230,7 @@ void MyAna::Loop()
   TH1F* TOP_M_RECO_ALL_SMEAR = new TH1F("TOP_M_RECO_ALL_SMEAR","TOP_M_RECO_ALL_SMEAR",850,0,250);
   TTree* M_RECO_ALL_SMEAR    = new TTree("M_RECO_ALL_SMEAR","M_RECO_ALL_SMEAR");
   float mass_reco_all_smear, weight_reco_all_smear;
-  const float smear_rms = 10;  //smearing su spectre du p_{T,J/#psi}
+  const float smear_rms = 1;  //smearing su spectre du p_{T,J/#psi}
   M_RECO_ALL_SMEAR->Branch("mass_smear", &mass_reco_all_smear, "mass_smear/F");  
   M_RECO_ALL_SMEAR->Branch("weight_smear", &weight_reco_all_smear, "weight_smear/F"); 
 

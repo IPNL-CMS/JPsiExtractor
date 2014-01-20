@@ -125,8 +125,8 @@ void grapherror_style(TGraphErrors *gr,
 int PlotJpsiPt(TString channel, TString date="140109", bool tosave=false) {
 
   vector<TString> inputfilename; 
-  inputfilename.push_back("_2jets40_chi5_mudist105_drjet03_ctausup_shift2_smear4_140109/TTbar173.root");
-  inputfilename.push_back("_2jets40_chi5_mudist105_drjet03_ctausup_shift4_smear8_140109/TTbar173.root");
+  inputfilename.push_back("_2jets40_chi5_mudist105_drjet03_ctausup_shift2_smear4_140110/TTbar173.root");
+  inputfilename.push_back("_2jets40_chi5_mudist105_drjet03_ctausup_shift4_smear8_140110/TTbar173.root");
   
   TString outname = "JpsiPt_";
 

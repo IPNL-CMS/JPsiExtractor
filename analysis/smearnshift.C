@@ -162,7 +162,7 @@ double *step(double inf,double sup, TString mtl_s, TString weight_s, TTree *tree
   return mean_err;
 }
 
-int smearnshift(TString channel, TString date="140109", int rebin=10, bool tosave=false, bool control=false){
+int smearnshift(TString channel, TString date="140109", int rebin=10, bool tosave=false, bool control=true){
 
   gSystem->Load("libRooFit");
   using namespace RooFit ;
@@ -170,12 +170,12 @@ int smearnshift(TString channel, TString date="140109", int rebin=10, bool tosav
   //rebin in 2,5,10,17
 
   vector<TString> inputfilename; 
-  inputfilename.push_back("_2jets40_chi5_mudist105_drjet03_ctausup_shiftd_smear1_140109/TTbar173.root");
-  inputfilename.push_back("_2jets40_chi5_mudist105_drjet03_ctausup_shift1_smear2_140109/TTbar173.root");
-  inputfilename.push_back("_2jets40_chi5_mudist105_drjet03_ctausup_shift2_smear4_140109/TTbar173.root");
-  inputfilename.push_back("_2jets40_chi5_mudist105_drjet03_ctausup_shift3_smear6_140109/TTbar173.root");
-  inputfilename.push_back("_2jets40_chi5_mudist105_drjet03_ctausup_shift4_smear8_140109/TTbar173.root");
-  inputfilename.push_back("_2jets40_chi5_mudist105_drjet03_ctausup_shift5_smear10_140109/TTbar173.root");
+  inputfilename.push_back("_2jets40_chi5_mudist105_drjet03_ctausup_shiftd_smear1_140110/TTbar173.root");
+  inputfilename.push_back("_2jets40_chi5_mudist105_drjet03_ctausup_shift1_smear2_140110/TTbar173.root");
+  inputfilename.push_back("_2jets40_chi5_mudist105_drjet03_ctausup_shift2_smear4_140110/TTbar173.root");
+  inputfilename.push_back("_2jets40_chi5_mudist105_drjet03_ctausup_shift3_smear6_140110/TTbar173.root");
+  inputfilename.push_back("_2jets40_chi5_mudist105_drjet03_ctausup_shift4_smear8_140110/TTbar173.root");
+  inputfilename.push_back("_2jets40_chi5_mudist105_drjet03_ctausup_shift5_smear10_140110/TTbar173.root");
   vector<TString> leg_shift_s; vector<double> x_shift;
   x_shift.push_back(0);
   leg_shift_s.push_back("0.5 GeV/c"); x_shift.push_back(0.5);
@@ -366,10 +366,10 @@ int smearnshift(TString channel, TString date="140109", int rebin=10, bool tosav
   }
   TGraphErrors *gr_shift = new TGraphErrors(numberOfPoints,tab_x_shift,tab_y_shift,tab_ex_shift,tab_ey_shift);
   TGraphErrors *gr_smear = new TGraphErrors(numberOfPoints,tab_x_smear,tab_y_smear,tab_ex_smear,tab_ey_smear);
-  cn_shift_gr->cd();
-  //grapherror_style(gr_shift,"gr_shift",2,30,1,30,1001,70,80,510,510,21,36,1.,"Pythia6 leptonic t#bar{t} events","shift of p_{T}(J/#psi) (GeV/c)","#tilde{M}_{J/#psi+l} (GeV/c^{2})");
-  grapherror_style(gr_shift,"gr_shift",2,30,1,30,1001,65,80,510,510,21,36,1.,"Pythia6 leptonic t#bar{t} events","shift of p_{T}(J/#psi) (GeV/c)","#tilde{M}_{J/#psi+l} (GeV/c^{2})");
-  //grapherror_style(gr_shift,"gr_shift",2,30,1,30,1001,70,80,510,510,21,36,1.,"Pythia6 leptonic t#bar{t} events","shift of p_{T}(J/#psi) (GeV/c)","M_{J/#psi+l} maxmimum (GeV/c^{2})");
+  cn_shift_gr->cd(); //muons
+  grapherror_style(gr_shift,"gr_shift",2,30,1,30,1001,70,80,510,510,21,36,1.,"Pythia6 leptonic t#bar{t} events","shift of p_{T}(J/#psi) (GeV/c)","#tilde{M}_{J/#psi+l} (GeV/c^{2})");  //electrons
+  //grapherror_style(gr_shift,"gr_shift",2,30,1,30,1001,65,80,510,510,21,36,1.,"Pythia6 leptonic t#bar{t} events","shift of p_{T}(J/#psi) (GeV/c)","#tilde{M}_{J/#psi+l} (GeV/c^{2})"); //muons
+  //grapherror_style(gr_shift,"gr_shift",2,30,1,30,1001,70,80,510,510,21,36,1.,"Pythia6 leptonic t#bar{t} events","shift of p_{T}(J/#psi) (GeV/c)","M_{J/#psi+l} maxmimum (GeV/c^{2})"); //rms
   TFitResultPtr fitptr_shift = gr_shift->Fit("pol1","FS","");
   TF1* fit_shift = gr_shift->GetFunction("pol1");
   Double_t slope_shift = fitptr_shift->Parameter(1);
@@ -379,9 +379,9 @@ int smearnshift(TString channel, TString date="140109", int rebin=10, bool tosav
   gr_shift->Draw("AP");
  
   cn_smear_gr->cd();
-  //grapherror_style(gr_smear,"gr_smear",2,30,1,30,1001,70,76,510,510,21,36,1.,"Pythia6 leptonic t#bar{t} events","smear of p_{T}(J/#psi) (GeV/c)","#tilde{M}_{J/#psi+l} maximum (GeV/c^{2})");
-  grapherror_style(gr_smear,"gr_smear",2,30,1,30,1001,67,73,510,510,21,36,1.,"Pythia6 leptonic t#bar{t} events","smear of p_{T}(J/#psi) (GeV/c)","#tilde{M}_{J/#psi+l} maximum (GeV/c^{2})");
-  //grapherror_style(gr_smear,"gr_smear",2,30,1,30,1001,70,76,510,510,21,36,1.,"Pythia6 leptonic t#bar{t} events","smear of p_{T}(J/#psi) (GeV/c)","M_{J/#psi+l} maximum (GeV/c^{2})");
+  grapherror_style(gr_smear,"gr_smear",2,30,1,30,1001,70,82,510,510,21,36,1.,"Pythia6 leptonic t#bar{t} events","smear of p_{T}(J/#psi) (GeV/c)","#tilde{M}_{J/#psi+l} (GeV/c^{2})"); //electron
+  //grapherror_style(gr_smear,"gr_smear",2,30,1,30,1001,68,78,510,510,21,36,1.,"Pythia6 leptonic t#bar{t} events","smear of p_{T}(J/#psi) (GeV/c)","#tilde{M}_{J/#psi+l} (GeV/c^{2})"); //muon
+  //grapherror_style(gr_smear,"gr_smear",2,30,1,30,1001,70,76,510,510,21,36,1.,"Pythia6 leptonic t#bar{t} events","smear of p_{T}(J/#psi) (GeV/c)","M_{J/#psi+l} maximum (GeV/c^{2})"); //rms
   TFitResultPtr fitptr_smear = gr_smear->Fit("pol1","FS","");
   TF1* fit_smear = gr_smear->GetFunction("pol1");
   Double_t slope_smear = fitptr_smear->Parameter(1);
@@ -390,10 +390,10 @@ int smearnshift(TString channel, TString date="140109", int rebin=10, bool tosav
   fit_smear->SetLineColor(30); fit_smear->SetLineWidth(2);
   gr_smear->Draw("AP");
   
-  cn_shift_gr->cd(); latex->DrawLatex(0.25,78,channel); latex->DrawLatex(2.5,69,text_shift); 
-  cn_smear_gr->cd(); latex->DrawLatex(0.5,72,channel); latex->DrawLatex(5,68,text_smear);
-  //cn_shift_gr->cd(); latex->DrawLatex(0.25,78,channel); latex->DrawLatex(2.5,72,text_shift); 
-  //cn_smear_gr->cd(); latex->DrawLatex(0.5,75,channel); latex->DrawLatex(5,71,text_smear);
+  //cn_shift_gr->cd(); latex->DrawLatex(0.25,78,channel); latex->DrawLatex(2.5,69,text_shift); 
+  //cn_smear_gr->cd(); latex->DrawLatex(0.5,76,channel); latex->DrawLatex(5,70,text_smear);
+  cn_shift_gr->cd(); latex->DrawLatex(0.25,78,channel); latex->DrawLatex(2.5,72,text_shift); 
+  cn_smear_gr->cd(); latex->DrawLatex(0.5,80,channel); latex->DrawLatex(5,71,text_smear);
 
   if (rebin == 2) outname = outname + "rebin2_" + date;
   if (rebin == 5) outname = outname + "rebin5_" + date;
