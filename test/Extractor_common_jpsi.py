@@ -39,8 +39,10 @@ def createExtractorProcess(isMC, isSemiMu, useShiftCorrectedMET, globalTag):
   process.PATextraction.isMC  = isMC
   process.PATextraction.doMC  = isMC
 
-  # JPsi stuff
-  process.PATextraction.doMCjpsi = True
+  # JPsi and D0 extractors
+  process.PATextraction.doMCjpsi = True # store true J/psi / B hadron / b quark kinematics
+  process.PATextraction.doMCd0 = True # store true D0->K Pi kinematics
+  process.PATextraction.doKVF = True # reconstruct J/psi and D0 within jets with a KVF
 
   #Input PAT file to extract
   process.source = cms.Source("PoolSource",
@@ -83,7 +85,7 @@ def createExtractorProcess(isMC, isSemiMu, useShiftCorrectedMET, globalTag):
   process.PATextraction.vtx_tag    = cms.InputTag( "goodOfflinePrimaryVertices" )
   process.PATextraction.doHLT      = True
 
-  process.PATextraction.doPF       = True
+  process.PATextraction.doPF       = False # we do not keep it anymore in patTuples
 
   if not isMC:
     if isSemiMu:
@@ -100,6 +102,10 @@ def createExtractorProcess(isMC, isSemiMu, useShiftCorrectedMET, globalTag):
     process.PATextraction.jet_PF.jetCorrectorLabel = "ak5PFchsL1FastL2L3Residual"
 
   process.PATextraction.jet_PF.doJER = True # Disable automatically on data
+  process.PATextraction.jet_PF.doLooseJetID = True
+  # process.PATextraction.jet_PF.useGlobalTagForJEC = False # True for MC and False for data !
+  process.PATextraction.jet_PF.jecPayload = "Extractors/PatExtractor/data/jec_payloads.xml"
+  process.PATextraction.jet_PF.jecJetAlgo = "AK5PFchs"
 
   # JER systematics:
   # Use -1 for 1-sigma down, 0 for nominal correction, and 1 for 1-sigma up

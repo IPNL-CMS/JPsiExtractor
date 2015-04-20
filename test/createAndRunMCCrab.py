@@ -6,98 +6,113 @@ from optparse import OptionParser
 parser = OptionParser()
 parser.add_option("", "--run", action="store_true", dest="run", default=False, help="run crab")
 (options, args) = parser.parse_args()
+    
+# Get username address
+#user_name = "\'/store/user/%s\'" % (pwd.getpwuid(os.getuid()).pw_name)
+user_name = "\'/store/user/ebouvier\'" 
 
-datasets = [
-    #["/Py8TTbar173_19Jun13-v1/ebouvier-TTbar173-Pythia8_26Jun13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar173-Pythia8_26Jun13"]
-    ["/TTbar158_16Feb13-v1/ebouvier-TTbar158_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar158_18Apr13"],
-    ["/TTbar163_16Feb13-v1/ebouvier-TTbar163_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar163_18Apr13"],
-    ["/TTbar167_16Feb13-v1/ebouvier-TTbar167_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar167_18Apr13"],
-    ["/TTbar169_17Feb13-v1/ebouvier-TTbar169_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar169_18Apr13"],
-    ["/TTbar170_16Feb13-v1/ebouvier-TTbar170_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar170_18Apr13"],
-    ["/TTbar171_17Feb13-v1/ebouvier-TTbar171_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar171_18Apr13"],
-    ["/TTbar172_16Feb13-v1/ebouvier-TTbar172_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar172_18Apr13"],
-    #["/TTbar173_16Feb13-v1/ebouvier-TTbar173_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar173_18Apr13"],
-    ["/TTbar174_16Feb13-v1/ebouvier-TTbar174_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar174_18Apr13"],
-    ["/TTbar175_17Feb13-v1/ebouvier-TTbar175_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar175_18Apr13"],
-    ["/TTbar176_16Feb13-v1/ebouvier-TTbar176_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar176_18Apr13"],
-    ["/TTbar177_17Feb13-v1/ebouvier-TTbar177_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar177_18Apr13"],
-    ["/TTbar179_16Feb13-v1/ebouvier-TTbar179_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar179_18Apr13"],
-    ["/TTbar183_16Feb13-v1/ebouvier-TTbar183_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar183_18Apr13"],
-    ["/TTbar188_16Feb13-v1/ebouvier-TTbar188_18Apr13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar188_18Apr13"],
-
-    #["/T_s-channel_TuneZ2star_8TeV-powheg-tauola/ebouvier-T_s-channel_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "T_s-channel_03May13"],
-    #["/T_t-channel_TuneZ2star_8TeV-powheg-tauola/ebouvier-T_t-channel_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "T_t-channel_03May13"],
-    #["/T_tW-channel-DR_TuneZ2star_8TeV-powheg-tauola/ebouvier-T_tW-channel_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "T_tW-channel_03May13"],
-    #["/Tbar_s-channel_TuneZ2star_8TeV-powheg-tauola/ebouvier-Tbar_s-channel_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "Tbar_s-channel_03May13"],
-    #["/Tbar_t-channel_TuneZ2star_8TeV-powheg-tauola/ebouvier-Tbar_t-channel_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "Tbar_t-channel_03May13"],
-    #["/Tbar_tW-channel-DR_TuneZ2star_8TeV-powheg-tauola/ebouvier-Tbar_tW-channel_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "Tbar_tW-channel_03May13"],
-
-    #["/WW_TuneZ2star_8TeV_pythia6_tauola/ebouvier-WW-incl_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "WW-incl_03May13"],
-    #["/WbbJetsToLNu_Massive_TuneZ2star_8TeV-madgraph-pythia6_tauola/ebouvier-WbbJets-lnu_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "WbbJets-lnu_03May13"],
-    #["/WZ_TuneZ2star_8TeV_pythia6_tauola/ebouvier-WZ-incl_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "WZ-incl_03May13"],
-    #["/ZZ_TuneZ2star_8TeV_pythia6_tauola/ebouvier-ZZ-incl_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "ZZ-incl_03May13"],
-
-    #["/DYJetsToLL_M-10To50filter_8TeV-madgraph/ebouvier-DYJetsToLL_M-10To50_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "DYJetsToLL_M-10To50_03May13"],
-    #["/DYJetsToLL_M-50_TuneZ2Star_8TeV-madgraph-tarball/ebouvier-DYJetsToLL_M-50_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "DYJetsToLL_M-50_03May13"],
-    #["/W1JetsToLNu_TuneZ2Star_8TeV-madgraph/ebouvier-W1JetsToLNu_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "W1JetsToLNu_03May13"],
-    #["/W2JetsToLNu_TuneZ2Star_8TeV-madgraph/ebouvier-W2JetsToLNu_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "W2JetsToLNu_03May13"],
-    #["/W3JetsToLNu_TuneZ2Star_8TeV-madgraph/ebouvier-W3JetsToLNu_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "W3JetsToLNu_03May13"],
-    #["/W4JetsToLNu_TuneZ2Star_8TeV-madgraph/ebouvier-W4JetsToLNu_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "W4JetsToLNu_03May13"],
-
-    #["/WJetsToLNu_TuneZ2Star_8TeV-madgraph-tarball/ebouvier-WJetsToLNu_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "WJetsToLNu_03May13"],
-
-    #["/TTJets_FullLeptMGDecays_8TeV-madgraph/ebouvier-TTbar-dilept_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar-dilept_03May13"],
-    #["/TTJets_SemiLeptMGDecays_8TeV-madgraph/ebouvier-TTbar-semilept_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar-semilept_03May13"],
-    #["/TTJets_HadronicMGDecays_8TeV-madgraph/ebouvier-TTbar-hadronic_03May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "TTbar-hadronic_03May13"],
-
-
-    #["/QCD_Pt-1000_MuEnrichedPt5_TuneZ2star_8TeV_pythia6/ebouvier-QCD_Pt_1000_MuEnriched_07May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "QCD_Pt_1000_MuEnriched_07May13"],
-    #["/QCD_Pt-120to170_MuEnrichedPt5_TuneZ2star_8TeV_pythia6/ebouvier-QCD_Pt_120_170_MuEnriched_07May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "QCD_Pt_120_170_MuEnriched_07May13"],
-    #["/QCD_Pt-15to20_MuEnrichedPt5_TuneZ2star_8TeV_pythia6/ebouvier-QCD_Pt_15_20_MuEnriched_07May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "QCD_Pt_15_20_MuEnriched_07May13"],
-    #["/QCD_Pt_170_250_EMEnriched_TuneZ2star_8TeV_pythia6/ebouvier-QCD_Pt_170_250_EMEnriched_07May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "QCD_Pt_170_250_EMEnriched_07May13"],
-    #["/QCD_Pt-170to300_MuEnrichedPt5_TuneZ2star_8TeV_pythia6/ebouvier-QCD_Pt_170_300_MuEnriched_07May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "QCD_Pt_170_300_MuEnriched_07May13"],
-    #["/QCD_Pt_20_30_EMEnriched_TuneZ2star_8TeV_pythia6/ebouvier-QCD_Pt_20_30_EMEnriched_07May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "QCD_Pt_20_30_EMEnriched_07May13"],
-    #["/QCD_Pt-20to30_MuEnrichedPt5_TuneZ2star_8TeV_pythia6/ebouvier-QCD_Pt_20_30_MuEnriched_07May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "QCD_Pt_20_30_MuEnriched_07May13"],
-    #["/QCD_Pt_250_350_EMEnriched_TuneZ2star_8TeV_pythia6/ebouvier-QCD_Pt_250_350_EMEnriched_07May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "QCD_Pt_250_350_EMEnriched_07May13"],
-    #["/QCD_Pt-300to470_MuEnrichedPt5_TuneZ2star_8TeV_pythia6/ebouvier-QCD_Pt_300_470_MuEnriched_07May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "QCD_Pt_300_470_MuEnriched_07May13"],
-    #["/QCD_Pt-30to50_MuEnrichedPt5_TuneZ2star_8TeV_pythia6/ebouvier-QCD_Pt_30_50_MuEnriched_07May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "QCD_Pt_30_50_MuEnriched_07May13"],
-    #["/QCD_Pt_30_80_EMEnriched_TuneZ2star_8TeV_pythia6/ebouvier-QCD_Pt_30_80_EMEnriched_07May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "QCD_Pt_30_80_EMEnriched_07May13"],
-    #["/QCD_Pt_350_EMEnriched_TuneZ2star_8TeV_pythia6/ebouvier-QCD_Pt_350_EMEnriched_07May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "QCD_Pt_350_EMEnriched_07May13"],
-    #["/QCD_Pt-470to600_MuEnrichedPt5_TuneZ2star_8TeV_pythia6/ebouvier-QCD_Pt_470_600_MuEnriched_07May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "QCD_Pt_470_600_MuEnriched_07May13"],
-    #["/QCD_Pt-50to80_MuEnrichedPt5_TuneZ2star_8TeV_pythia6/ebouvier-QCD_Pt_50_80_MuEnriched_07May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "QCD_Pt_50_80_MuEnriched_07May13"],
-    #["/QCD_Pt-600to800_MuEnrichedPt5_TuneZ2star_8TeV_pythia6/ebouvier-QCD_Pt_600_800_MuEnriched_07May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "QCD_Pt_600_800_MuEnriched_07May13"],
-    #["/QCD_Pt-800to1000_MuEnrichedPt5_TuneZ2star_8TeV_pythia6/ebouvier-QCD_Pt_800_1000_MuEnriched_07May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "QCD_Pt_800_1000_MuEnriched_07May13"],
-    #["/QCD_Pt-80to120_MuEnrichedPt5_TuneZ2star_8TeV_pythia6/ebouvier-QCD_Pt_80_120_MuEnriched_07May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "QCD_Pt_80_120_MuEnriched_07May13"],
-    #["/QCD_Pt_80_170_EMEnriched_TuneZ2star_8TeV_pythia6/ebouvier-QCD_Pt_80_170_EMEnriched_07May13-v1-ab4dbf1efff2b71bb776a79dcd4a112c/USER", "QCD_Pt_80_170_EMEnriched_07May13"],
-
-    ]
-
-# Get email address
-email = "%s@ipnl.in2p3.fr" % (pwd.getpwuid(os.getuid()).pw_name)
-
-d = datetime.datetime.now().strftime("%d%b%y")
+d = datetime.datetime.now().strftime("%y%b%d")
 
 version = 1
 
-print("Creating configs for crab. Today is %s, you are %s and it's version %d" % (d, email, version))
+datasets = [
+    # Standard ttbar
+    ["/TTJets_SemiLeptMGDecays_8TeV-madgraph-tauola/ebouvier-TTJets_SemiLeptMGDecays_15Apr01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_SemiLeptMGDecays", "1"],
+    ["/TTJets_FullLeptMGDecays_8TeV-madgraph-tauola/ebouvier-TTJets_FullLeptMGDecays_15Apr01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_FullLeptMGDecays", "1"],
+    ["/TTJets_HadronicMGDecays_8TeV-madgraph/ebouvier-TTJets_HadronicMGDecays_15Apr01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_HadronicMGDecays", "25"],
+    # W + jets
+    #["", "WJetsToLNu", ""],
+    ["/W1JetsToLNu_TuneZ2Star_8TeV-madgraph/ebouvier-W1JetsToLNu_15Apr01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "W1JetsToLNu", "2"],
+    ["/W2JetsToLNu_TuneZ2Star_8TeV-madgraph/ebouvier-W2JetsToLNu_15Apr01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "W2JetsToLNu", "2"],
+    ["/W3JetsToLNu_TuneZ2Star_8TeV-madgraph/ebouvier-W3JetsToLNu_15Apr01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "W3JetsToLNu", "2"],
+    ["/W4JetsToLNu_TuneZ2Star_8TeV-madgraph/ebouvier-W4JetsToLNu_15Apr01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "W4JetsToLNu", "1"],
+    # Z + jets
+    #["", "DYJetsToLL_M-10To50", ""],
+    #["", "DYJetsToLL_M-50", ""],
+    ["/DY1JetsToLL_M-50_TuneZ2Star_8TeV-madgraph/ebouvier-DY1JetsToLL_M-50_15Apr01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "DY1JetsToLL_M-50", "1"],
+    ["/DY2JetsToLL_M-50_TuneZ2Star_8TeV-madgraph/ebouvier-DY2JetsToLL_M-50_15Apr01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "DY2JetsToLL_M-50", "1"],
+    ["/DY3JetsToLL_M-50_TuneZ2Star_8TeV-madgraph/ebouvier-DY3JetsToLL_M-50_15Apr01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "DY3JetsToLL_M-50", "1"],
+    ["/DY4JetsToLL_M-50_TuneZ2Star_8TeV-madgraph/ebouvier-DY4JetsToLL_M-50_15Apr01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "DY4JetsToLL_M-50", "1"],
+    # diboson
+    ["/WW_TuneZ2star_8TeV_pythia6_tauola/ebouvier-WW-incl_15Apr01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "WW-incl", "2"],
+    ["/ZZ_TuneZ2star_8TeV_pythia6_tauola/ebouvier-ZZ-incl_15Apr01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "WZ-incl", "2"],
+    ["/WZ_TuneZ2star_8TeV_pythia6_tauola/ebouvier-WZ-incl_15Apr01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "ZZ-incl", "2"],
+    # ttbar other
+    ["/TTWJets_8TeV-madgraph/ebouvier-TTWJets_15Apr01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTWJets", "1"],
+    ["/TTWWJets_8TeV-madgraph/ebouvier-TTWWJets_15Apr01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTWWJets", "1"],
+    ["/TTZJets_8TeV-madgraph_v2/ebouvier-TTZJets_15Apr01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTZJets", "1"],
+    # single top 
+    ## central
+    ["/T_s-channel_TuneZ2star_8TeV-powheg-tauola/ebouvier-T_s-channel_15Apr01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "T_s-channel", "2"],
+    ["/T_t-channel_TuneZ2star_8TeV-powheg-tauola/ebouvier-T_t-channel_15Apr01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "T_t-channel", "2"],
+    ["/T_tW-channel-DR_TuneZ2star_8TeV-powheg-tauola/ebouvier-T_tW-channel_15Apr01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "T_tW-channel", "1"],
+    ["/Tbar_s-channel_TuneZ2star_8TeV-powheg-tauola/ebouvier-Tbar_s-channel_15Apr01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "Tbar_s-channel", "2"],
+    ["/Tbar_t-channel_TuneZ2star_8TeV-powheg-tauola/ebouvier-Tbar_t-channel_15Apr01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "Tbar_t-channel", "2"],
+    ["/Tbar_tW-channel-DR_TuneZ2star_8TeV-powheg-tauola/ebouvier-Tbar_tW-channel_15Apr01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "Tbar_tW-channel", "1"], 
+    ## single top t-chanel, top mass variations
+    #["", "TToLeptons_t-channel_mass166_5", ""],
+    #["", "TToLeptons_t-channel_mass169_5", ""],
+    #["", "TToLeptons_t-channel_mass171_5", ""],
+    #["", "TToLeptons_t-channel_mass173_5", ""],
+    #["", "TToLeptons_t-channel_mass175_5", ""],
+    #["", "TToLeptons_t-channel_mass178_5", ""],
+    #["", "TBarToLeptons_t-channel_mass166_5", ""],
+    #["", "TBarToLeptons_t-channel_mass169_5", ""],
+    #["", "TBarToLeptons_t-channel_mass171_5", ""],
+    #["", "TBarToLeptons_t-channel_mass173_5", ""],
+    #["", "TBarToLeptons_t-channel_mass175_5", ""],
+    #["", "TBarToLeptons_t-channel_mass178_5", ""],
+    ## 166.5
+    #["", "TBarToLeptons_s-channel_mass166_5", ""],
+    #["", "TBarToLeptons_t-channel_mass166_5", ""],
+    #["", "TBarToTlepWhad_tW-channel-DR_mass166_5", ""],
+    #["", "TBarToThadWlep_tW-channel-DR_mass166_5", ""],
+    #["", "TBarToDilepton_tW-channel-DR_mass166_5", ""],
+    #["", "TToLeptons_s-channel_mass166_5", ""],
+    #["", "TToLeptons_t-channel_mass166_5", ""],
+    #["", "TToTlepWhad_tW-channel-DR_mass166_5", ""],
+    #["", "TToThadWlep_tW-channel-DR_mass166_5", ""],
+    #["", "TToDilepton_tW-channel-DR_mass166_5", ""],
+    ## 178.5
+    #["", "TBarToLeptons_s-channel_mass178_5", ""],
+    #["", "TBarToLeptons_t-channel_mass178_5", ""],
+    #["", "TBarToTlepWhad_tW-channel-DR_mass178_5", ""],
+    #["", "TBarToThadWlep_tW-channel-DR_mass178_5", ""],
+    #["", "TBarToDilepton_tW-channel-DR_mass178_5", ""],
+    #["", "TToLeptons_s-channel_mass178_5", ""],
+    #["", "TToLeptons_t-channel_mass178_5", ""],
+    #["", "TToTlepWhad_tW-channel-DR_mass178_5", ""],
+    #["", "TToThadWlep_tW-channel-DR_mass178_5", ""],
+    #["", "TToDilepton_tW-channel-DR_mass178_5", ""],
+    ]
+
+print("Creating configs for crab. Today is %s, you are %s and it's version %d" % (d, user_name, version))
 print("")
+
+if not os.path.exists(d):
+    os.mkdir(d)
+
+pset_name = "\'Extractor_MC_jpsi.py\'"
 
 for dataset in datasets:
 
-  dataset_name = dataset[1]
-  dataset_path = dataset[0]
+    dataset_path = "\'"+dataset[0]+"\'"
+    dataset_name = dataset[1]
+    dataset_quanta = dataset[2]
 
-  ui_working_dir = ("crab_MC_%s") % (dataset_name)
-  output_file = "crab_MC_%s.cfg" % (dataset_name)
-  output_dir = ("Extracted_step2/%s/%s" % (d, dataset_name))
+    task_name = ("\'MC_Extracted_%s\'") % (dataset_name)
+    publish_name = "\'%s_%s-v%d\'" % (dataset_name, d, version)
+    output_file = "%s/crab_MC_Extracted_%s.py" % (d, dataset_name)
+    output_dir = ("\'crab_tasks/%s\'") % (d)
 
-  print("Creating config file for '%s'" % (dataset_path))
-  print("\tName: %s" % dataset_name)
-  print("")
+    print("\tCreating config file for %s" % (dataset_path))
+    print("\t\tName: \'%s\'" % dataset_name)
+    print("\t\tPublishing name: %s" % publish_name)
+    print("")
 
-  os.system("sed -e \"s#@datasetname@#%s#\" -e \"s#@uiworkingdir@#%s#g\" -e \"s#@outputdir@#%s#g\" -e \"s#@email@#%s#g\" crab_MC.cfg.template.ipnl > %s" % (dataset_path, ui_working_dir, output_dir, email, output_file))
-
-  cmd = "crab -create -submit -cfg %s" % (output_file)
-  if options.run:
-    os.system(cmd)
+    os.system("sed -e \"s#@datasetname@#%s#\" -e \"s#@taskname@#%s#g\" -e \"s#@outputdir@#%s#g\" -e \"s#@username@#%s#g\" -e \"s#@psetname@#%s#g\" -e \"s#@publishname@#%s#g\" -e \"s#@datasetquanta@#%s#g\" crab_MC.cfg.template.ipnl > %s" % (dataset_path, task_name, output_dir, user_name, pset_name, publish_name, dataset_quanta, output_file))
+    
+    cmd = "crab submit %s" % (output_file)
+    if options.run:
+        os.system(cmd)
 

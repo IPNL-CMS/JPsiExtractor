@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<triggers>
+  <runs from="190456" to="208686">
+    <path>
+      <name>HLT_Ele2.*</name>
+    </path>
+  </runs>
+</triggers>
