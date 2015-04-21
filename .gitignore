@@ -15,3 +15,5 @@
 
 # Compiled Python files
 *.pyc
+
+*.swp
