@@ -83,15 +83,14 @@ def createExtractorProcess(isMC, isSemiMu, useShiftCorrectedMET, globalTag):
 
   process.PATextraction.doVertex   = True
   process.PATextraction.vtx_tag    = cms.InputTag( "goodOfflinePrimaryVertices" )
-  process.PATextraction.doHLT      = True
-
+  process.PATextraction.doHLT      = True 
   process.PATextraction.doPF       = False # we do not keep it anymore in patTuples
 
-  if not isMC:
-    if isSemiMu:
-      process.PATextraction.triggersXML = readFile("triggers_mu.xml")
-    else:
-      process.PATextraction.triggersXML = readFile("triggers_e.xml")
+  # if not isMC:
+  #   if isSemiMu:
+  #     process.PATextraction.triggersXML = readFile("triggers_mu.xml")
+  #   else:
+  #     process.PATextraction.triggersXML = readFile("triggers_e.xml")
 
   # Jets correction : needs a valid global tags, or an external DB where JEC are stored
   process.PATextraction.jet_PF.redoJetCorrection = True

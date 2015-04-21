@@ -4,7 +4,7 @@ Monte Carlo samples
 
 ~~~ Standard ttbar ~~~
 
-Crab task name: 150420_151626:ebouvier_crab_MC_Extracted_TTJets_SemiLeptMGDecays
+Crab task name: 
 Number of events processed:   
 Number of events filtered:  
 Number of files: 810 
@@ -297,7 +297,7 @@ Primary datasets
 
 ~~~ Muonic stream ~~~
 
-Crab task name: 150420_151308:ebouvier_crab_Data_Extracted_MuHad_Run2012A 
+Crab task name:  
 Number of events processed: 
 Number of events filtered: 
 Number of files: 17 

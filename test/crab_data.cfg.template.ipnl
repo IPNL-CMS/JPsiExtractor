@@ -9,7 +9,6 @@ config.General.transferLogs = True
 config.section_("JobType")
 config.JobType.pluginName = 'Analysis'
 config.JobType.psetName = @psetname@
-config.JobType.inputFiles = ['triggers_e.xml','triggers_mu.xml']
 
 config.section_("Data")
 config.Data.inputDataset = @datasetname@

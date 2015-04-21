@@ -4,5 +4,7 @@
     <path>
       <name>HLT_IsoMu24_eta2p1.*</name>
     </path>
-  </runs>
+    <path>
+      <name>HLT_IsoMu17_eta2p1_TriCentralPF.*</name>
+    </path>
 </triggers>

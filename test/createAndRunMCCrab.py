@@ -13,7 +13,7 @@ user_name = "\'/store/user/ebouvier\'"
 
 d = datetime.datetime.now().strftime("%y%b%d")
 
-version = 1
+version = 2
 
 datasets = [
     # Standard ttbar

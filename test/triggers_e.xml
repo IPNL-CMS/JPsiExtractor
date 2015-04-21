@@ -2,7 +2,10 @@
 <triggers>
   <runs from="190456" to="208686">
     <path>
-      <name>HLT_Ele2.*</name>
+      <name>HLT_Ele27_WP80.*</name>
+    </path>
+    <path>
+      <name>HLT_Ele25_CaloIdVT_CaloIso.*</name>
     </path>
   </runs>
 </triggers>
