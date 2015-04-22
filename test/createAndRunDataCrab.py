@@ -33,6 +33,7 @@ if not os.path.exists(d):
     os.mkdir(d)
 
 pset_name = "\'Extractor_jpsi.py\'"
+out_name = "\'extracted.root\'"
 
 for dataset in datasets:
 
@@ -50,7 +51,7 @@ for dataset in datasets:
     print("\t\tPublishing name: %s" % publish_name)
     print("")
 
-    os.system("sed -e \"s#@datasetname@#%s#g\" -e \"s#@taskname@#%s#g\" -e \"s#@outputdir@#%s#g\" -e \"s#@username@#%s#g\" -e \"s#@psetname@#%s#g\" -e \"s#@datasetquanta@#%s#g\" -e \"s#@publishname@#%s#g\" crab_data.cfg.template.ipnl > %s" % (dataset_path, task_name, output_dir, user_name, pset_name, dataset_quanta, publish_name, output_file))
+    os.system("sed -e \"s#@datasetname@#%s#g\" -e \"s#@taskname@#%s#g\" -e \"s#@outputdir@#%s#g\" -e \"s#@username@#%s#g\" -e \"s#@psetname@#%s#g\" -e \"s#@outname@#%s#g\" -e \"s#@datasetquanta@#%s#g\" -e \"s#@publishname@#%s#g\" crab_data.cfg.template.ipnl > %s" % (dataset_path, task_name, output_dir, user_name, pset_name, out_name, dataset_quanta, publish_name, output_file))
 
     cmd = "crab submit %s" % (output_file)
     if options.run:
