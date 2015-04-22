@@ -9,7 +9,7 @@ config.General.transferLogs = True
 config.section_("JobType")
 config.JobType.pluginName = 'Analysis'
 config.JobType.psetName = @psetname@
-config.JobType.outputFiles = @outname@
+config.JobType.outputFiles = [@outname@]
 
 config.section_("Data")
 config.Data.inputDataset = @datasetname@
