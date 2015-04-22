@@ -18,11 +18,11 @@ version = 2
 datasets = [
     ["/MuHad/ebouvier-MuHad_Run2012A-22Jan2013_15Apr01-v1-0a0811ab37aa24280a978161285f4b48/USER", "MuHad_Run2012A", "10"],
     ["/ElectronHad/ebouvier-ElectronHad_Run2012A-22Jan2013_15Apr01-v1-0a0811ab37aa24280a978161285f4b48/USER", "ElectronHad_Run2012A","14"],
-    ["/MuHad/ebouvier-MuHad_Run2012A-22Jan2013_15Apr01-v1-0a0811ab37aa24280a978161285f4b48/USER", "SingleMu_Run2012B", "2"],
+    ["/SingleMu/ebouvier-SingleMu_Run2012B-22Jan2013_15Apr01-v1-0a0811ab37aa24280a978161285f4b48/USER", "SingleMu_Run2012B", "2"],
     ["/SingleElectron/ebouvier-SingleElectron_Run2012B-22Jan2013_15Apr01-v1-0a0811ab37aa24280a978161285f4b48/USER", "SingleElectron_Run2012B", "3"],
-    ["/MuHad/ebouvier-MuHad_Run2012A-22Jan2013_15Apr01-v1-0a0811ab37aa24280a978161285f4b48/USER", "SingleMu_Run2012C", "2"],
+    ["/SingleMu/ebouvier-SingleMu_Run2012C-22Jan2013_15Apr01-v1-0a0811ab37aa24280a978161285f4b48/USER", "SingleMu_Run2012C", "2"],
     ["/SingleElectron/ebouvier-SingleElectron_Run2012C-22Jan2013_15Apr01-v1-0a0811ab37aa24280a978161285f4b48/USER", "SingleElectron_Run2012C", "3"],
-    ["/MuHad/ebouvier-MuHad_Run2012A-22Jan2013_15Apr01-v1-0a0811ab37aa24280a978161285f4b48/USER","SingleMu_Run2012D", "2"],
+    ["/SingleMu/ebouvier-SingleMu_Run2012D-22Jan2013_15Apr01-v1-0a0811ab37aa24280a978161285f4b48/USER","SingleMu_Run2012D", "2"],
     ["/SingleElectron/ebouvier-SingleElectron_Run2012D-22Jan2013_15Apr01-v1-0a0811ab37aa24280a978161285f4b48/USER","SingleElectron_Run2012D", "3"]
     ]
 
