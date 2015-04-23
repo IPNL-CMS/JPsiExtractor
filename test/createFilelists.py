@@ -18,12 +18,11 @@ if not os.path.isdir(dirList):
 
 crabFolders = [name for name in os.listdir(dir) if (os.path.isdir(os.path.join(dir, name)) and name.startswith("crab_"))]
 for crabFolder in crabFolders:
-    listFile = crabFolder.strip("crab_")  
+    listFile = crabFolder[5:]  
     if listFile.startswith("MC_"):
-        listFile = listFile.strip("MC_")
+        listFile = listFile[13:]
     if listFile.startswith("Data_"):
-        listFile = listFile.strip("Data_")
-    listFile = listFile.strip("Extracted_")
+        listFile = listFile[15:]
     listFile += ".list"
     listFile = os.path.join(dirList, listFile)
     list = open(listFile, 'w')
@@ -34,3 +33,25 @@ for crabFolder in crabFolders:
         rootFile = os.path.join(crabFolder, rootFile)
         list.write(rootFile+"\n")
     list.close()    
+
+dirMu = os.path.join(dirList, "MuonicDatasets")
+if not os.path.isdir(dirMu):
+    os.mkdir(dirMu)
+listFiles = [name for name in os.listdir(dirList) if (name.lower().count("muhad") or name.lower().count("singlemu"))]
+for listFile in listFiles:
+    cmd = "less "+os.path.join(dirList, listFile)+" >> "+os.path.join(dirList, "MuHadASingleMuBCD.list")
+    os.system(cmd)
+    cmd = "mv "+os.path.join(dirList, listFile)+" "+dirMu
+    os.system(cmd)
+dirEl = os.path.join(dirList, "ElectronicDatasets")
+if not os.path.isdir(dirEl):
+    os.mkdir(dirEl)
+listFiles = [name for name in os.listdir(dirList) if (name.lower().count("electronhad") or name.lower().count("singleelectron"))]
+for listFile in listFiles:
+    cmd = "less "+os.path.join(dirList, listFile)+" >> "+os.path.join(dirList, "ElectronHadASingleElectronBCD.list")
+    os.system(cmd)
+    cmd = "mv "+os.path.join(dirList, listFile)+" "+dirEl
+    os.system(cmd)
+
+print dirList[len(os.getcwd())+1:]+" has been created"
+
