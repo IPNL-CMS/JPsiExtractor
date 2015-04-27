@@ -5,7 +5,7 @@ Monte Carlo samples
 ~~~ Standard ttbar ~~~
 
 Crab task name: 150422_155309:ebouvier_crab_MC_Extracted_TTJets_SemiLeptMGDecays 
-Number of events processed:   
+Number of events processed: 5329126  
 Number of files: 810 
 -------------------
 Crab task name: 150422_155536:ebouvier_crab_MC_Extracted_TTJets_FullLeptMGDecays
@@ -19,7 +19,7 @@ Number of files: 27
 ~~~ W + jets  ~~~
 
 Crab task name: 150422_160030:ebouvier_crab_MC_Extracted_W1JetsToLNu
-Number of events processed: 
+Number of events processed: 383155 
 Number of files: 100 
 -------------------
 Crab task name: 150422_160419:ebouvier_crab_MC_Extracted_W2JetsToLNu 
@@ -100,7 +100,7 @@ Number of events processed:
 Number of files: 19 
 -------------------
 Crab task name: 150422_163535:ebouvier_crab_MC_Extracted_T_tW-channel 
-Number of events processed: 
+Number of events processed: 41917 
 Number of files: 6
 -------------------
 Crab task name: 150422_163535:ebouvier_crab_MC_Extracted_Tbar_tW-channel
@@ -265,7 +265,7 @@ Number of events processed: 124054
 Number of files: 12 
 -------------------
 Crab task name: 150422_140741:ebouvier_crab_Data_Extracted_SingleElectron_Run2012B
-Number of events processed: 
+Number of events processed: 1454135 
 Number of files: 170
 -------------------
 Crab task name: 150422_141015:ebouvier_crab_Data_Extracted_SingleElectron_Run2012C 
