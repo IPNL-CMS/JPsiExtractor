@@ -30,8 +30,8 @@ Crab task name: 150430_102030:ebouvier_crab_MC_Extracted_W3JetsToLNu
 Number of events processed: 502624 
 Number of files: 5 
 -------------------
-Crab task name: 150505_060554: 150430_103226:ebouvier_crab_MC_Extracted_W4JetsToLNu
-Number of events processed: 
+Crab task name: 150505_060554:ebouvier_crab_MC_Extracted_W4JetsToLNu
+Number of events processed: 584898 
 Number of files: 5 
 
 ~~~ Z + jets ~~~
@@ -72,8 +72,8 @@ Crab task name: 150422_163803:ebouvier_crab_MC_Extracted_TTWJets
 Number of events processed: 32210
 Number of files: 4 
 -------------------
-Crab task name: 150505_061441: 150430_100429:ebouvier_crab_MC_Extracted_TTWWJets
-Number of events processed:  
+Crab task name: 150505_061441:ebouvier_crab_MC_Extracted_TTWWJets
+Number of events processed: 49683 
 Number of files: 1 
 -------------------
 Crab task name: 150422_163951:ebouvier_crab_MC_Extracted_TTZJets
@@ -91,8 +91,8 @@ Crab task name: 150422_162919:ebouvier_crab_MC_Extracted_Tbar_s-channel
 Number of events processed: 5930
 Number of files: 2 
 -------------------
-Crab task name: 150505_061758: 150430_100945:ebouvier_crab_MC_Extracted_T_t-channel 
-Number of events processed: 
+Crab task name: 150505_061758:ebouvier_crab_MC_Extracted_T_t-channel 
+Number of events processed: 138022 
 Number of files: 2 
 -------------------
 Crab task name: 150430_100714:ebouvier_crab_MC_Extracted_Tbar_t-channel
@@ -246,16 +246,16 @@ Crab task name: 150422_142751:ebouvier_crab_Data_Extracted_MuHad_Run2012A
 Number of events processed: 175574
 Number of files: 17 
 -------------------
-Crab task name: 150505_060053: 150430_150819:ebouvier_crab_Data_Extracted_SingleMu_Run2012B 
-Number of events processed: 
+Crab task name: 150505_060053:ebouvier_crab_Data_Extracted_SingleMu_Run2012B 
+Number of events processed: 2065195 
 Number of files: 13 
 -------------------
-Crab task name: 150505_060135: 150430_102704:ebouvier_crab_Data_Extracted_SingleMu_Run2012C
-Number of events processed: 
+Crab task name: 150505_060135:ebouvier_crab_Data_Extracted_SingleMu_Run2012C
+Number of events processed: 3383008 
 Number of files: 21  
 -------------------
-Crab task name: 150505_060219: 150430_102712:ebouvier_crab_Data_Extracted_SingleMu_Run2012D 
-Number of events processed: 
+Crab task name: 150505_060219:ebouvier_crab_Data_Extracted_SingleMu_Run2012D 
+Number of events processed: 3876725 
 Number of files: 19 
 
 ~~~ Electronic stream ~~~
