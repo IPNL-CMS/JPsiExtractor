@@ -27,10 +27,10 @@ Number of events processed: 833413
 Number of files: 159 
 -------------------
 Crab task name: 150430_102030:ebouvier_crab_MC_Extracted_W3JetsToLNu 
-Number of events processed:  
+Number of events processed: 502624 
 Number of files: 5 
 -------------------
-Crab task name: 150430_103226:ebouvier_crab_MC_Extracted_W4JetsToLNu
+Crab task name: 150505_060554: 150430_103226:ebouvier_crab_MC_Extracted_W4JetsToLNu
 Number of events processed: 
 Number of files: 5 
 
@@ -41,7 +41,7 @@ Number of events processed: 1665594
 Number of files: 298 
 -------------------
 Crab task name: 150422_161335:ebouvier_crab_MC_Extracted_DY2JetsToLL_M-50 
-Number of events processed: 
+Number of events processed: 1938035
 Number of files: 314 
 -------------------
 Crab task name: 150422_161741:ebouvier_crab_MC_Extracted_DY3JetsToLL_M-50
@@ -59,11 +59,11 @@ Number of events processed: 230733
 Number of files: 64
 -------------------
 Crab task name: 150422_162628:ebouvier_crab_MC_Extracted_WZ-incl 
-Number of events processed:  
+Number of events processed: 261864 
 Number of files: 64 
 -------------------
 Crab task name: 150422_162629:ebouvier_crab_MC_Extracted_ZZ-incl
-Number of events processed: 
+Number of events processed: 236706 
 Number of files: 66
 
 ~~~ Other ttbar ~~~
@@ -72,7 +72,7 @@ Crab task name: 150422_163803:ebouvier_crab_MC_Extracted_TTWJets
 Number of events processed: 32210
 Number of files: 4 
 -------------------
-Crab task name: 150430_100429:ebouvier_crab_MC_Extracted_TTWWJets
+Crab task name: 150505_061441: 150430_100429:ebouvier_crab_MC_Extracted_TTWWJets
 Number of events processed:  
 Number of files: 1 
 -------------------
@@ -91,12 +91,12 @@ Crab task name: 150422_162919:ebouvier_crab_MC_Extracted_Tbar_s-channel
 Number of events processed: 5930
 Number of files: 2 
 -------------------
-Crab task name: 150430_100945:ebouvier_crab_MC_Extracted_T_t-channel 
+Crab task name: 150505_061758: 150430_100945:ebouvier_crab_MC_Extracted_T_t-channel 
 Number of events processed: 
 Number of files: 2 
 -------------------
 Crab task name: 150430_100714:ebouvier_crab_MC_Extracted_Tbar_t-channel
-Number of events processed: 
+Number of events processed: 73923
 Number of files: 1 
 -------------------
 Crab task name: 150422_163535:ebouvier_crab_MC_Extracted_T_tW-channel 
@@ -104,7 +104,7 @@ Number of events processed: 41917
 Number of files: 6
 -------------------
 Crab task name: 150422_163535:ebouvier_crab_MC_Extracted_Tbar_tW-channel
-Number of events processed: 
+Number of events processed: 41720
 Number of files: 6 
 ~~~~~~ top mass variations for t channel
 Crab task name:
@@ -246,15 +246,15 @@ Crab task name: 150422_142751:ebouvier_crab_Data_Extracted_MuHad_Run2012A
 Number of events processed: 175574
 Number of files: 17 
 -------------------
-Crab task name: 150430_150819:ebouvier_crab_Data_Extracted_SingleMu_Run2012B 
+Crab task name: 150505_060053: 150430_150819:ebouvier_crab_Data_Extracted_SingleMu_Run2012B 
 Number of events processed: 
 Number of files: 13 
 -------------------
-Crab task name: 150430_102704:ebouvier_crab_Data_Extracted_SingleMu_Run2012C
+Crab task name: 150505_060135: 150430_102704:ebouvier_crab_Data_Extracted_SingleMu_Run2012C
 Number of events processed: 
 Number of files: 21  
 -------------------
-Crab task name: 150430_102712:ebouvier_crab_Data_Extracted_SingleMu_Run2012D 
+Crab task name: 150505_060219: 150430_102712:ebouvier_crab_Data_Extracted_SingleMu_Run2012D 
 Number of events processed: 
 Number of files: 19 
 
