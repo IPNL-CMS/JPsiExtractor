@@ -222,6 +222,7 @@ Number of events processed: 486675
 Number of files: 4
 -------------------
 Crab task name: 150519_082914:ebouvier_crab_MC_Extracted_TTJets_MSDecays_JpsiFilter_172_5
+                150703_191442:ebouvier_crab_MC_Extracted_TTJets_MSDecays_JpsiFilter_172_5
 Number of events processed: 1092175
 Number of files: 8
 -------------------
@@ -252,6 +253,68 @@ Number of files: 4
 Crab task name: 150519_084002:ebouvier_crab_MC_Extracted_TTJets_MSDecays_JpsiFilter_scaleup
 Number of events processed: 721741
 Number of files: 5
+
+~~~ P11 ttbar ~~~
+
+Crab task name: 150703_191831:ebouvier_crab_MC_Extracted_TTJets_SemiLeptMGDecays_TuneP11
+Number of events processed: 2089665 
+Number of files: 17 
+-------------------
+Crab task name: 150703_192122:ebouvier_crab_MC_Extracted_TTJets_FullLeptMGDecays_TuneP11
+Number of events processed: 1748738
+Number of files: 9
+-------------------
+Crab task name: 150703_192358:ebouvier_crab_MC_Extracted_TTJets_HadronicMGDecays_TuneP11
+Number of events processed: 20086
+Number of files: 6
+-------------------
+Crab task name: 150703_192635:ebouvier_crab_MC_Extracted_TTJets_SemiLeptMGDecays_TuneP11mpiHi
+Number of events processed: 1388571 
+Number of files: 11
+-------------------
+Crab task name: 150703_192922:ebouvier_crab_MC_Extracted_TTJets_FullLeptMGDecays_TuneP11mpiHi
+Number of events processed: 1166707
+Number of files: 6
+-------------------
+Crab task name: 150703_193152:ebouvier_crab_MC_Extracted_TTJets_HadronicMGDecays_TuneP11mpiHi
+Number of events processed: 13726
+Number of files: 4
+-------------------
+Crab task name: 150703_193429:ebouvier_crab_MC_Extracted_TTJets_SemiLeptMGDecays_TuneP11TeV
+Number of events processed: 1371514
+Number of files: 12
+-------------------
+Crab task name: 150703_193734:ebouvier_crab_MC_Extracted_TTJets_FullLeptMGDecays_TuneP11TeV
+Number of events processed: 1164347
+Number of files: 7
+-------------------
+Crab task name: 150703_194002:ebouvier_crab_MC_Extracted_TTJets_HadronicMGDecays_TuneP11TeV
+Number of events processed: 14178
+Number of files: 4
+-------------------
+Crab task name: 150705_132724:ebouvier_crab_MC_Extracted_TTJets_SemiLeptMGDecays_TuneP11noCR
+Number of events processed: 2092935
+Number of files: 18
+-------------------
+Crab task name: 150703_194510:ebouvier_crab_MC_Extracted_TTJets_FullLeptMGDecays_TuneP11noCR
+Number of events processed: 1742504
+Number of files: 9
+-------------------
+Crab task name: 150703_194735:ebouvier_crab_MC_Extracted_TTJets_HadronicMGDecays_TuneP11noCR
+Number of events processed: 19593
+Number of files: 6
+
+~~~ Powheg ttbar ~~~
+
+Crab task name: 150703_195018:ebouvier_crab_MC_Extracted_TTJets_Powheg
+Number of events processed: 2289539
+Number of files: 27
+
+~~~ MC@NLO ttbar ~~~
+
+Crab task name: 150705_132724:ebouvier_crab_MC_Extracted_TTJets_MCatNLO 
+Number of events processed: 3516931 
+Number of files: 42
 
 
 ===================
