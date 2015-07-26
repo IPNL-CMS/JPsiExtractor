@@ -222,7 +222,7 @@ Number of events processed: 486675
 Number of files: 4
 -------------------
 Crab task name: 150519_082914:ebouvier_crab_MC_Extracted_TTJets_MSDecays_JpsiFilter_172_5
-                150703_191442:ebouvier_crab_MC_Extracted_TTJets_MSDecays_JpsiFilter_172_5
+                150726_064248:ebouvier_crab_MC_Extracted_TTJets_MSDecays_JpsiFilter_172_5
 Number of events processed: 1092175
 Number of files: 8
 -------------------

@@ -17,7 +17,7 @@ d = datetime.datetime.now().strftime("%y%b%d")
 #d = "JESup"
 #d = "JESdown"
 
-version = 2
+version = 3
 
 datasets = [
     # Standard ttbar
@@ -98,25 +98,25 @@ datasets = [
     #["/TTJets_MSDecays_JpsiFilter_scaleup_TuneZ2star_8TeV-madgraph-tauola/ebouvier-TTJets_MSDecays_JpsiFilter_scaleup_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_MSDecays_JpsiFilter_scaleup", "20"],
     # P11 ttbar
     ## central tune
-    ["/TTJets_SemiLeptMGDecays_TuneP11_8TeV-madgraph-tauola/ebouvier-TTJets_SemiLeptMGDecays_TuneP11_15Jun30-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_SemiLeptMGDecays_TuneP11", "20"],
-    ["/TTJets_FullLeptMGDecays_TuneP11_8TeV-madgraph-tauola/ebouvier-TTJets_FullLeptMGDecays_TuneP11_15Jun30-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_FullLeptMGDecays_TuneP11", "20"],
-    ["/TTJets_HadronicMGDecays_TuneP11_8TeV-madgraph-tauola/ebouvier-TTJets_HadronicMGDecays_TuneP11_15Jul01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_HadronicMGDecays_TuneP11", "50"],
+    #["/TTJets_SemiLeptMGDecays_TuneP11_8TeV-madgraph-tauola/ebouvier-TTJets_SemiLeptMGDecays_TuneP11_15Jun30-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_SemiLeptMGDecays_TuneP11", "20"],
+    #["/TTJets_FullLeptMGDecays_TuneP11_8TeV-madgraph-tauola/ebouvier-TTJets_FullLeptMGDecays_TuneP11_15Jun30-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_FullLeptMGDecays_TuneP11", "20"],
+    #["/TTJets_HadronicMGDecays_TuneP11_8TeV-madgraph-tauola/ebouvier-TTJets_HadronicMGDecays_TuneP11_15Jul01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_HadronicMGDecays_TuneP11", "50"],
     ## mpiHi tune
-    ["/TTJets_SemiLeptMGDecays_TuneP11mpiHi_8TeV-madgraph-tauola/ebouvier-TTJets_SemiLeptMGDecays_TuneP11mpiHi_15Jun30-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_SemiLeptMGDecays_TuneP11mpiHi", "20"],
-    ["/TTJets_FullLeptMGDecays_TuneP11mpiHi_8TeV-madgraph-tauola/ebouvier-TTJets_FullLeptMGDecays_TuneP11mpiHi_15Jun30-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_FullLeptMGDecays_TuneP11mpiHi", "20"],
-    ["/TTJets_HadronicMGDecays_TuneP11mpiHi_8TeV-madgraph-tauola/ebouvier-TTJets_HadronicMGDecays_TuneP11mpiHi_15Jul01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_HadronicMGDecays_TuneP11mpiHi", "50"],
+    #["/TTJets_SemiLeptMGDecays_TuneP11mpiHi_8TeV-madgraph-tauola/ebouvier-TTJets_SemiLeptMGDecays_TuneP11mpiHi_15Jun30-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_SemiLeptMGDecays_TuneP11mpiHi", "20"],
+    #["/TTJets_FullLeptMGDecays_TuneP11mpiHi_8TeV-madgraph-tauola/ebouvier-TTJets_FullLeptMGDecays_TuneP11mpiHi_15Jun30-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_FullLeptMGDecays_TuneP11mpiHi", "20"],
+    #["/TTJets_HadronicMGDecays_TuneP11mpiHi_8TeV-madgraph-tauola/ebouvier-TTJets_HadronicMGDecays_TuneP11mpiHi_15Jul01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_HadronicMGDecays_TuneP11mpiHi", "50"],
     ## Tevatron tune
-    ["/TTJets_SemiLeptMGDecays_TuneP11TeV_8TeV-madgraph-tauola/ebouvier-TTJets_SemiLeptMGDecays_TuneP11TeV_15Jun30-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_SemiLeptMGDecays_TuneP11TeV", "20"],
-    ["/TTJets_FullLeptMGDecays_TuneP11TeV_8TeV-madgraph-tauola/ebouvier-TTJets_FullLeptMGDecays_TuneP11TeV_15Jun30-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_FullLeptMGDecays_TuneP11TeV", "20"],
-    ["/TTJets_HadronicMGDecays_TuneP11TeV_8TeV-madgraph-tauola/ebouvier-TTJets_HadronicMGDecays_TuneP11TeV_15Jul01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_HadronicMGDecays_TuneP11TeV", "50"],
+    #["/TTJets_SemiLeptMGDecays_TuneP11TeV_8TeV-madgraph-tauola/ebouvier-TTJets_SemiLeptMGDecays_TuneP11TeV_15Jun30-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_SemiLeptMGDecays_TuneP11TeV", "20"],
+    #["/TTJets_FullLeptMGDecays_TuneP11TeV_8TeV-madgraph-tauola/ebouvier-TTJets_FullLeptMGDecays_TuneP11TeV_15Jun30-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_FullLeptMGDecays_TuneP11TeV", "20"],
+    #["/TTJets_HadronicMGDecays_TuneP11TeV_8TeV-madgraph-tauola/ebouvier-TTJets_HadronicMGDecays_TuneP11TeV_15Jul01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_HadronicMGDecays_TuneP11TeV", "50"],
     ## noCR tune
-    ["/TTJets_SemiLeptMGDecays_TuneP11noCR_8TeV-madgraph-tauola/ebouvier-TTJets_SemiLeptMGDecays_TuneP11noCR_15Jun30-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_SemiLeptMGDecays_TuneP11noCR", "20"],
-    ["/TTJets_FullLeptMGDecays_TuneP11noCR_8TeV-madgraph-tauola/ebouvier-TTJets_FullLeptMGDecays_TuneP11noCR_15Jun30-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_FullLeptMGDecays_TuneP11noCR", "20"],
-    ["/TTJets_HadronicMGDecays_TuneP11noCR_8TeV-madgraph-tauola/ebouvier-TTJets_HadronicMGDecays_TuneP11noCR_15Jul01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_HadronicMGDecays_TuneP11noCR", "50"],
+    #["/TTJets_SemiLeptMGDecays_TuneP11noCR_8TeV-madgraph-tauola/ebouvier-TTJets_SemiLeptMGDecays_TuneP11noCR_15Jun30-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_SemiLeptMGDecays_TuneP11noCR", "20"],
+    #["/TTJets_FullLeptMGDecays_TuneP11noCR_8TeV-madgraph-tauola/ebouvier-TTJets_FullLeptMGDecays_TuneP11noCR_15Jun30-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_FullLeptMGDecays_TuneP11noCR", "20"],
+    #["/TTJets_HadronicMGDecays_TuneP11noCR_8TeV-madgraph-tauola/ebouvier-TTJets_HadronicMGDecays_TuneP11noCR_15Jul01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_HadronicMGDecays_TuneP11noCR", "50"],
     # POWHEG ttbar
-    ["/TT_CT10_TuneZ2star_8TeV-powheg-tauola/ebouvier-TTJets_Powheg_15Jun30-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_Powheg", "20"],
+    #["/TT_CT10_TuneZ2star_8TeV-powheg-tauola/ebouvier-TTJets_Powheg_15Jun30-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_Powheg", "20"],
     # MC@NLO
-    ["/TT_8TeV-mcatnlo/ebouvier-TTJets_MCatNLO_15Jun30-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_MCatNLO", "20"],
+    #["/TT_8TeV-mcatnlo/ebouvier-TTJets_MCatNLO_15Jun30-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_MCatNLO", "20"],
     ]
 
 print("Creating configs for crab. Today is %s, you are %s and it's version %d" % (d, user_name, version))
