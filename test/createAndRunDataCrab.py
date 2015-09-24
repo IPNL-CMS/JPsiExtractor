@@ -13,7 +13,7 @@ user_name = "\'/store/user/ebouvier\'"
 
 d = datetime.datetime.now().strftime("%y%b%d")
 
-version = 2
+version = 6
     
 datasets = [
     ["/MuHad/ebouvier-MuHad_Run2012A-22Jan2013_15Apr01-v1-0a0811ab37aa24280a978161285f4b48/USER", "MuHad_Run2012A", "100"],
