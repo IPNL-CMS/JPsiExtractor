@@ -18,8 +18,10 @@ config.Data.splitting = 'FileBased'
 config.Data.unitsPerJob = @datasetquanta@
 config.Data.outLFNDirBase = @username@  
 config.Data.publication = False
-config.Data.publishDataName = @publishname@
+config.Data.outputDatasetTag = @publishname@
+config.Data.ignoreLocality = True
 
 config.section_("Site")
 config.Site.storageSite = 'T3_FR_IPNL'
 #config.Site.whitelist = ['T3_FR_IPNL']
+config.Site.whitelist = ['T2_FR_CCIN2P3']

@@ -17,7 +17,7 @@ d = datetime.datetime.now().strftime("%y%b%d")
 #d = "JESup"
 #d = "JESdown"
 
-version = 5
+version = 9
 
 datasets = [
     # Standard ttbar
@@ -54,18 +54,18 @@ datasets = [
     ["/Tbar_t-channel_TuneZ2star_8TeV-powheg-tauola/ebouvier-Tbar_t-channel_15Apr01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "Tbar_t-channel", "40"],
     ["/Tbar_tW-channel-DR_TuneZ2star_8TeV-powheg-tauola/ebouvier-Tbar_tW-channel_15Apr01-v1-e6007310307bd4a37c1ea3682357ad52/USER", "Tbar_tW-channel", "20"], 
     ## single top t-chanel, top mass variations
-    #["/TToLeptons_t-channel_mass166_5_8TeV-powheg-tauola/ebouvier-TToLeptons_t-channel_mass166_5_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TToLeptons_t-channel_mass166_5", "40"],
-    #["/TToLeptons_t-channel_mass169_5_8TeV-powheg-tauola/ebouvier-TToLeptons_t-channel_mass169_5_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TToLeptons_t-channel_mass169_5", "40"],
-    #["/TToLeptons_t-channel_mass171_5_8TeV-powheg-tauola/ebouvier-TToLeptons_t-channel_mass171_5_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TToLeptons_t-channel_mass171_5", "40"],
-    #["/TToLeptons_t-channel_mass173_5_8TeV-powheg-tauola/ebouvier-TToLeptons_t-channel_mass173_5_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TToLeptons_t-channel_mass173_5", "40"],
-    #["/TToLeptons_t-channel_mass175_5_8TeV-powheg-tauola/ebouvier-TToLeptons_t-channel_mass175_5_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TToLeptons_t-channel_mass175_5", "40"],
-    #["/TToLeptons_t-channel_mass178_5_8TeV-powheg-tauola/ebouvier-TToLeptons_t-channel_mass178_5_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TToLeptons_t-channel_mass178_5", "40"],
-    #["/TBarToLeptons_t-channel_mass166_5_8TeV-powheg-tauola/ebouvier-TBarToLeptons_t-channel_mass166_5_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TBarToLeptons_t-channel_mass166_5", "40"],
-    #["/TBarToLeptons_t-channel_mass169_5_8TeV-powheg-tauola/ebouvier-TBarToLeptons_t-channel_mass169_5_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TBarToLeptons_t-channel_mass169_5", "40"],
-    #["/TBarToLeptons_t-channel_mass171_5_8TeV-powheg-tauola/ebouvier-TBarToLeptons_t-channel_mass171_5_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TBarToLeptons_t-channel_mass171_5", "40"],
-    #["/TBarToLeptons_t-channel_mass173_5_8TeV-powheg-tauola/ebouvier-TBarToLeptons_t-channel_mass173_5_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TBarToLeptons_t-channel_mass173_5", "40"],
-    #["/TBarToLeptons_t-channel_mass175_5_8TeV-powheg-tauola/ebouvier-TBarToLeptons_t-channel_mass175_5_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TBarToLeptons_t-channel_mass175_5", "40"],
-    #["/TBarToLeptons_t-channel_mass178_5_8TeV-powheg-tauola/ebouvier-TBarToLeptons_t-channel_mass178_5_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TBarToLeptons_t-channel_mass178_5", "40"],
+    ["/TToLeptons_t-channel_mass166_5_8TeV-powheg-tauola/ebouvier-TToLeptons_t-channel_mass166_5_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TToLeptons_t-channel_mass166_5", "40"],
+    ["/TToLeptons_t-channel_mass169_5_8TeV-powheg-tauola/ebouvier-TToLeptons_t-channel_mass169_5_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TToLeptons_t-channel_mass169_5", "40"],
+    ["/TToLeptons_t-channel_mass171_5_8TeV-powheg-tauola/ebouvier-TToLeptons_t-channel_mass171_5_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TToLeptons_t-channel_mass171_5", "40"],
+    ["/TToLeptons_t-channel_mass173_5_8TeV-powheg-tauola/ebouvier-TToLeptons_t-channel_mass173_5_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TToLeptons_t-channel_mass173_5", "40"],
+    ["/TToLeptons_t-channel_mass175_5_8TeV-powheg-tauola/ebouvier-TToLeptons_t-channel_mass175_5_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TToLeptons_t-channel_mass175_5", "40"],
+    ["/TToLeptons_t-channel_mass178_5_8TeV-powheg-tauola/ebouvier-TToLeptons_t-channel_mass178_5_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TToLeptons_t-channel_mass178_5", "40"],
+    ["/TBarToLeptons_t-channel_mass166_5_8TeV-powheg-tauola/ebouvier-TBarToLeptons_t-channel_mass166_5_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TBarToLeptons_t-channel_mass166_5", "40"],
+    ["/TBarToLeptons_t-channel_mass169_5_8TeV-powheg-tauola/ebouvier-TBarToLeptons_t-channel_mass169_5_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TBarToLeptons_t-channel_mass169_5", "40"],
+    ["/TBarToLeptons_t-channel_mass171_5_8TeV-powheg-tauola/ebouvier-TBarToLeptons_t-channel_mass171_5_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TBarToLeptons_t-channel_mass171_5", "40"],
+    ["/TBarToLeptons_t-channel_mass173_5_8TeV-powheg-tauola/ebouvier-TBarToLeptons_t-channel_mass173_5_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TBarToLeptons_t-channel_mass173_5", "40"],
+    ["/TBarToLeptons_t-channel_mass175_5_8TeV-powheg-tauola/ebouvier-TBarToLeptons_t-channel_mass175_5_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TBarToLeptons_t-channel_mass175_5", "40"],
+    ["/TBarToLeptons_t-channel_mass178_5_8TeV-powheg-tauola/ebouvier-TBarToLeptons_t-channel_mass178_5_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TBarToLeptons_t-channel_mass178_5", "40"],
     ## 166.5
     #["/TBarToLeptons_s-channel_mass166_5_8TeV-powheg-tauola/ebouvier-TBarToLeptons_s-channel_mass166_5_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TBarToLeptons_s-channel_mass166_5", "40"],
     #["/TBarToTlepWhad_tW-channel-DR_mass166_5_8TeV-powheg-tauola/ebouvier-TBarToTlepWhad_tW-channel-DR_mass166_5_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TBarToTlepWhad_tW-channel-DR_mass166_5", "20"],
@@ -85,17 +85,17 @@ datasets = [
     #["/TToThadWlep_tW-channel-DR_mass178_5_8TeV-powheg-tauola/ebouvier-TToThadWlep_tW-channel-DR_mass178_5_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TToThadWlep_tW-channel-DR_mass178_5", "20"],
     #["/TToDilepton_tW-channel-DR_mass178_5_8TeV-powheg-tauola/ebouvier-TToDilepton_tW-channel-DR_mass178_5_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TToDilepton_tW-channel-DR_mass178_5", "20"],
     # Jpsi enriched ttbar
-    #["/TTJets_MSDecays_JpsiFilter_1665_TuneZ2star_8TeV-madgraph-tauola/ebouvier-TTJets_MSDecays_JpsiFilter_1665_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_MSDecays_JpsiFilter_166_5", "20"],
-    #["/TTJets_MSDecays_JpsiFilter_1695_TuneZ2star_8TeV-madgraph-tauola/ebouvier-TTJets_MSDecays_JpsiFilter_1695_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_MSDecays_JpsiFilter_169_5", "20"],
-    #["/TTJets_MSDecays_JpsiFilter_1715_TuneZ2star_8TeV-madgraph-tauola/ebouvier-TTJets_MSDecays_JpsiFilter_1715_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_MSDecays_JpsiFilter_171_5", "20"],
-    #["/TTJets_MSDecays_JpsiFilter_central_TuneZ2star_8TeV-madgraph-tauola/ebouvier-TTJets_MSDecays_JpsiFilter_1725_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_MSDecays_JpsiFilter_172_5", "20"],
-    #["/TTJets_MSDecays_JpsiFilter_1735_TuneZ2star_8TeV-madgraph-tauola/ebouvier-TTJets_MSDecays_JpsiFilter_1735_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_MSDecays_JpsiFilter_173_5", "20"],
-    #["/TTJets_MSDecays_JpsiFilter_1755_TuneZ2star_8TeV-madgraph-tauola/ebouvier-TTJets_MSDecays_JpsiFilter_1755_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_MSDecays_JpsiFilter_175_5", "20"],
-    #["/TTJets_MSDecays_JpsiFilter_1785_TuneZ2star_8TeV-madgraph-tauola/ebouvier-TTJets_MSDecays_JpsiFilter_1785_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_MSDecays_JpsiFilter_178_5", "20"],
-    #["/TTJets_MSDecays_JpsiFilter_matchingdown_TuneZ2star_8TeV-madgraph-tauola/ebouvier-TTJets_MSDecays_JpsiFilter_matchingdown_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_MSDecays_JpsiFilter_matchingdown", "20"],
-    #["/TTJets_MSDecays_JpsiFilter_matchingup_TuneZ2star_8TeV-madgraph-tauola/ebouvier-TTJets_MSDecays_JpsiFilter_matchingup_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_MSDecays_JpsiFilter_matchingup", "20"],
-    #["/TTJets_MSDecays_JpsiFilter_scaledown_TuneZ2star_8TeV-madgraph-tauola/ebouvier-TTJets_MSDecays_JpsiFilter_scaledown_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_MSDecays_JpsiFilter_scaledown", "20"],
-    #["/TTJets_MSDecays_JpsiFilter_scaleup_TuneZ2star_8TeV-madgraph-tauola/ebouvier-TTJets_MSDecays_JpsiFilter_scaleup_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_MSDecays_JpsiFilter_scaleup", "20"],
+    ["/TTJets_MSDecays_JpsiFilter_1665_TuneZ2star_8TeV-madgraph-tauola/ebouvier-TTJets_MSDecays_JpsiFilter_1665_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_MSDecays_JpsiFilter_166_5", "20"],
+    ["/TTJets_MSDecays_JpsiFilter_1695_TuneZ2star_8TeV-madgraph-tauola/ebouvier-TTJets_MSDecays_JpsiFilter_1695_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_MSDecays_JpsiFilter_169_5", "20"],
+    ["/TTJets_MSDecays_JpsiFilter_1715_TuneZ2star_8TeV-madgraph-tauola/ebouvier-TTJets_MSDecays_JpsiFilter_1715_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_MSDecays_JpsiFilter_171_5", "20"],
+    ["/TTJets_MSDecays_JpsiFilter_central_TuneZ2star_8TeV-madgraph-tauola/ebouvier-TTJets_MSDecays_JpsiFilter_1725_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_MSDecays_JpsiFilter_172_5", "20"],
+    ["/TTJets_MSDecays_JpsiFilter_1735_TuneZ2star_8TeV-madgraph-tauola/ebouvier-TTJets_MSDecays_JpsiFilter_1735_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_MSDecays_JpsiFilter_173_5", "20"],
+    ["/TTJets_MSDecays_JpsiFilter_1755_TuneZ2star_8TeV-madgraph-tauola/ebouvier-TTJets_MSDecays_JpsiFilter_1755_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_MSDecays_JpsiFilter_175_5", "20"],
+    ["/TTJets_MSDecays_JpsiFilter_1785_TuneZ2star_8TeV-madgraph-tauola/ebouvier-TTJets_MSDecays_JpsiFilter_1785_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_MSDecays_JpsiFilter_178_5", "20"],
+    ["/TTJets_MSDecays_JpsiFilter_matchingdown_TuneZ2star_8TeV-madgraph-tauola/ebouvier-TTJets_MSDecays_JpsiFilter_matchingdown_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_MSDecays_JpsiFilter_matchingdown", "20"],
+    ["/TTJets_MSDecays_JpsiFilter_matchingup_TuneZ2star_8TeV-madgraph-tauola/ebouvier-TTJets_MSDecays_JpsiFilter_matchingup_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_MSDecays_JpsiFilter_matchingup", "20"],
+    ["/TTJets_MSDecays_JpsiFilter_scaledown_TuneZ2star_8TeV-madgraph-tauola/ebouvier-TTJets_MSDecays_JpsiFilter_scaledown_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_MSDecays_JpsiFilter_scaledown", "20"],
+    ["/TTJets_MSDecays_JpsiFilter_scaleup_TuneZ2star_8TeV-madgraph-tauola/ebouvier-TTJets_MSDecays_JpsiFilter_scaleup_15May10-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_MSDecays_JpsiFilter_scaleup", "20"],
     # P11 ttbar
     ## central tune
     #["/TTJets_SemiLeptMGDecays_TuneP11_8TeV-madgraph-tauola/ebouvier-TTJets_SemiLeptMGDecays_TuneP11_15Jun30-v1-e6007310307bd4a37c1ea3682357ad52/USER", "TTJets_SemiLeptMGDecays_TuneP11", "20"],
